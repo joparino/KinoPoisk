@@ -15,12 +15,13 @@ class GridWidget extends StatelessWidget {
         GestureDetector(
           onTap: () {},
           child: Container(
+            margin: EdgeInsets.only(bottom: 2),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(25.0),
               child: Image.asset(
                 image,
-                width: cwidth-10,
-                height: cheight-100,
+                width: cwidth-20,
+                height: cheight-40,
                 fit: BoxFit.fill,
               ),
             ),

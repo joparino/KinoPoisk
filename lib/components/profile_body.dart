@@ -14,7 +14,7 @@ class Body extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            constraints: BoxConstraints.expand(height: 50),
+            constraints: BoxConstraints.expand(height: 40),
             child: TabBar(tabs: [
               Tab(text: "Просмотрено"),
               Tab(text: "Желаемое"),
@@ -26,9 +26,11 @@ class Body extends StatelessWidget {
               child: TabBarView(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 10, right: 3,left: 3),
+                    margin: EdgeInsets.only(top: 10, right: 8, left: 8),
                     child: GridView(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        mainAxisExtent: 250,
+                        mainAxisSpacing: 10,
                         crossAxisCount: 2,
                       ),
                       children: [
@@ -43,9 +45,11 @@ class Body extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 10, right: 3,left: 3),
+                    margin: EdgeInsets.only(top: 10, right: 8, left: 8),
                     child: GridView(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        mainAxisExtent: 250,
+                        mainAxisSpacing: 10,
                         crossAxisCount: 2,
                       ),
                       children: [
@@ -60,9 +64,11 @@ class Body extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 10, right: 3,left: 3),
+                    margin: EdgeInsets.only(top: 10, right: 8, left: 8),
                     child: GridView(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        mainAxisExtent: 250,
+                        mainAxisSpacing: 10,
                         crossAxisCount: 2,
                       ),
                       children: [
