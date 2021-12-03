@@ -1,4 +1,4 @@
-import 'package:flok/pages/profile_body.dart';
+import 'package:flok/components/profile_body.dart';
 import 'package:flok/components/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
