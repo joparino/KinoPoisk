@@ -1,20 +1,22 @@
 import 'dart:async';
 import 'dart:collection';
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 main() async {
-  Uri url = Uri.parse('https://imdb-api.com/ru/API/Top250Movies/k_p4j7oduq');
+  Uri url = Uri.parse('https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1');
    Map<String, String> headers = HashMap();
-  headers.putIfAbsent('Accept', () => 'application/json');
-  headers.putIfAbsent('Accept-Language', () => 'ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3');
+  headers.addAll({'X-API-KEY': 'c02232f2-6940-45e2-be79-bc333cac1da7'});
+  headers.addAll({'content-type': 'application/json'});
 
   http.Response response = await http.get(
       url,
       headers: headers,
   );
-
+  
   print('Response status: ${response.statusCode}');
-  print('Response body: ${response.body}');
+  print('Response body: ${(response.body)}');
+  print('Response body: ${response.headers}');
 
   try {
     http.Response response = await http.get(
