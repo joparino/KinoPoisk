@@ -1,8 +1,6 @@
-import 'dart:async' show Future, TimeoutException;
-import 'package:flutter/services.dart' show rootBundle;
+import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
-import 'package:flutter/animation.dart';
 import 'package:http/http.dart' as http;
 
 main() async {
@@ -15,11 +13,13 @@ main() async {
       url,
       headers: headers,
   );
-  
+
   var responseText = utf8.decode(response.bodyBytes);
   Map<String, dynamic> x = json.decode(responseText);
-  print(x["pagesCount"]);
-
+  for (int i = 0; i < x["films"].length; i++)
+  {
+    print(x["films"][i]);
+  }
   
 
   try {
