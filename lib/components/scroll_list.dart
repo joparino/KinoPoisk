@@ -1,4 +1,5 @@
 import 'package:flok/components/constants.dart';
+import 'package:flok/pages/details/description.dart';
 import 'package:flutter/material.dart';
 
 class List extends StatelessWidget {
@@ -11,7 +12,11 @@ class List extends StatelessWidget {
     return Row(
       children: <Widget>[
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+          Navigator.push(context, MaterialPageRoute(
+              builder: (context)=> DescriptionPage(),
+            ));
+          },
           child: Container(
             margin: EdgeInsets.only(top: 10, left: 14),
             child: ClipRRect(
