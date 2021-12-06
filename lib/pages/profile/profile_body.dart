@@ -1,4 +1,4 @@
-import 'package:flok/components/grid_view.dart';
+import 'package:flok/pages/profile/grid_view.dart';
 import 'package:flok/components/scroll_list.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flok/components/bottom_navigation.dart';
+import 'package:flok/pages/serial/serial_body.dart';
 import 'package:flutter/material.dart';
-import 'components/serial/serial_body.dart';
 
 
 class SerialPage extends StatelessWidget {

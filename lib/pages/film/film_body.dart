@@ -1,6 +1,5 @@
 import 'package:flok/components/scroll_list.dart';
-import 'package:flok/constants.dart';
-import 'package:flok/pages/components/film/title_film.dart';
+import 'package:flok/pages/film/title_film.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

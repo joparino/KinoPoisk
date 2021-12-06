@@ -1,5 +1,5 @@
 import 'package:flok/components/bottom_navigation.dart';
-import 'package:flok/pages/components/film/film_body.dart';
+import 'package:flok/pages/film/film_body.dart';
 import 'package:flutter/material.dart';
 
 class FilmsPage extends StatelessWidget {

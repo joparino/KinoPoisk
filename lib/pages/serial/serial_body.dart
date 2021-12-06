@@ -1,6 +1,5 @@
 import 'package:flok/components/scroll_list.dart';
-import 'package:flok/constants.dart';
-import 'package:flok/pages/components/serial/title_serial.dart';
+import 'package:flok/pages/serial/title_serial.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
