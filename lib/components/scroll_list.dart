@@ -2,8 +2,8 @@ import 'package:flok/components/constants.dart';
 import 'package:flok/pages/details/description.dart';
 import 'package:flutter/material.dart';
 
-class List extends StatelessWidget {
-  const List({ Key? key, required this.image}) : super(key: key);
+class ListFilm extends StatelessWidget {
+  const ListFilm({ Key? key, required this.image}) : super(key: key);
 
   final String image;
 
@@ -21,7 +21,7 @@ class List extends StatelessWidget {
             margin: EdgeInsets.only(top: 10, left: 14),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(25.0),
-              child: Image.asset(
+              child: Image.network(
                 image,
                 width: cwidth,
                 height: cheight,

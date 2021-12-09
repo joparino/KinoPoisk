@@ -1,36 +1,33 @@
 import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
+import 'package:flok/model/films.dart';
 import 'package:http/http.dart' as http;
 
-main() async {
-  Uri url = Uri.parse('https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1');
-  Map<String, String> headers = HashMap();
-  headers.addAll({'X-API-KEY': 'c02232f2-6940-45e2-be79-bc333cac1da7'});
-  headers.addAll({'content-type': 'application/json'});
 
-  http.Response response = await http.get(
+class FilmsApi{
+  static Future<List<ModelFilm>> getTopFilm() async {
+    Uri url = Uri.parse('https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1');
+
+    final response = await http.get(
       url,
-      headers: headers,
-  );
+      headers: {'X-API-KEY': 'c02232f2-6940-45e2-be79-bc333cac1da7'},
+    );
+    var responseText = utf8.decode(response.bodyBytes);
+    final List x = json.decode(responseText);
 
-  var responseText = utf8.decode(response.bodyBytes);
-  Map<String, dynamic> x = json.decode(responseText);
-  for (int i = 0; i < x["films"].length; i++)
-  {
-    print(x["films"][i]);
-  }
-  
+    // try {
+    //  http.Response response = await http.get(
+    //    url,
+    //    headers: headers,
+    //  )
+    //    .timeout(const Duration(seconds: 1));
+    //  } on TimeoutException catch (e) {
+    //    print('Timeout');
+    //  } on Error catch (e) {
+    //    print('Error: $e');
+    //  }
 
-  try {
-    http.Response response = await http.get(
-      url,
-      headers: headers,
-    )
-    .timeout(const Duration(seconds: 1));
-  } on TimeoutException catch (e) {
-    print('Timeout');
-  } on Error catch (e) {
-    print('Error: $e');
+    return x.map((e) => ModelFilm.fromJson(e)).toList();
   }
 }
