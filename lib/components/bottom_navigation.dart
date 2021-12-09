@@ -1,6 +1,5 @@
 import 'package:flok/main.dart';
 import 'package:flok/pages/films.dart';
-import 'package:flok/pages/serials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,7 +15,7 @@ class bottomNavigation extends StatelessWidget {
       height: 80,
       color: Colors.white,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           IconButton(
             onPressed: () {
@@ -35,15 +34,6 @@ class bottomNavigation extends StatelessWidget {
               );
             },
             icon: SvgPicture.asset('assets/icons/camera.svg')
-            ),
-            IconButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context)=> SerialPage(),
-                ),
-              );
-            }, 
-            icon: SvgPicture.asset('assets/icons/serial.svg')
             ),
           ],
       ),

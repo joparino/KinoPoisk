@@ -14,7 +14,7 @@ Widget build(BuildContext context) {
   return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          title(Title: 'Фильмы',),
+          title(Title: 'Фильмы и сериалы',),
           Row(
             children: <Widget>[
               Container(
