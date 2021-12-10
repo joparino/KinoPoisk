@@ -26,7 +26,7 @@ class FilmsPage extends StatelessWidget {
             itemBuilder: (context, index)
             {
               final film = films[index];
-              return  ListFilm(image: film.posterUrlPreview);
+              return  ListFilm(image: film.;
             }
           );
         }
