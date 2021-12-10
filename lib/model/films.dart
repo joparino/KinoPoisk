@@ -12,8 +12,6 @@ class ModelFilm {
     }
   }
 
-  get posterUrlPreview => null;
-
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (films != null) {

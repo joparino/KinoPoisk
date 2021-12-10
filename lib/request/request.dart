@@ -14,7 +14,8 @@ class FilmsApi{
       headers: {'X-API-KEY': 'c02232f2-6940-45e2-be79-bc333cac1da7'},
     );
     var responseText = utf8.decode(response.bodyBytes);
-    final List x = json.decode(responseText);
+    final Map<String, dynamic> x = json.decode(responseText);
+    return x["films"].map((e) => ModelFilm.fromJson(e)).toList();
 
     // try {
     //  http.Response response = await http.get(
@@ -27,7 +28,18 @@ class FilmsApi{
     //  } on Error catch (e) {
     //    print('Error: $e');
     //  }
-
-    return x.map((e) => ModelFilm.fromJson(e)).toList();
   }
+}
+
+
+main() async{
+  Uri url = Uri.parse('https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1');
+
+   final response = await http.get(
+      url,
+      headers: {'X-API-KEY': 'c02232f2-6940-45e2-be79-bc333cac1da7'},
+    );
+   var responseText = utf8.decode(response.bodyBytes);
+   final Map<String, dynamic> x = json.decode(responseText);
+   print(x["films"].map((e) => ModelFilm.fromJson(e)).toList());
 }
