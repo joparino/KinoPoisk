@@ -14,7 +14,7 @@ class ListFilm extends StatelessWidget {
         GestureDetector(
           onTap: () {
           Navigator.push(context, MaterialPageRoute(
-              builder: (context)=> DescriptionPage(),
+              builder: (context)=> const DescriptionPage(),
             ));
           },
           child: Container(

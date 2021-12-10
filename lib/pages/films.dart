@@ -10,7 +10,7 @@ class FilmsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List<ModelFilm>>(
+      body: FutureBuilder<List<Film>>(
         future: FilmsApi.getTopFilm(),
         builder: (context, snapshot)
         {
@@ -23,10 +23,20 @@ class FilmsPage extends StatelessWidget {
 
           return ListView.builder(
             itemCount: films!.length,
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
             itemBuilder: (context, index)
             {
               final film = films[index];
-              return  ListFilm(image: film.;
+              return  Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 14),
+                    child: ListFilm(image: film.posterUrlPreview)
+                    ),
+                ],
+              );
             }
           );
         }
