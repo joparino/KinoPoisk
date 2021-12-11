@@ -10,36 +10,94 @@ class FilmsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List<Film>>(
-        future: FilmsApi.getTopFilm(),
-        builder: (context, snapshot)
-        {
-          if(!snapshot.hasData)
-          {
-            return const Center(child: CircularProgressIndicator());
-          }
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: FutureBuilder<List<Film>>(
+              future: FilmsApi.getTopPopular(),
+              builder: (context, snapshot)
+              {
+                if(!snapshot.hasData)
+                {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                
+                final films = snapshot.data;
           
-          final films = snapshot.data;
-
-          return ListView.builder(
-            itemCount: films!.length,
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            itemBuilder: (context, index)
-            {
-              final film = films[index];
-              return  Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 14),
-                    child: ListFilm(image: film.posterUrlPreview)
-                    ),
-                ],
-              );
-            }
-          );
-        }
+                return ListView.builder(
+                  itemCount: films!.length,
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index)
+                  {
+                    final film = films[index];
+                    return  Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 14),
+                          child: ListFilm(image: film.posterUrlPreview, filmId: film.filmId)
+                          ),
+                      ],
+                    );
+                  }
+                );
+              }
+            ),
+          ),
+          Expanded(
+            child: FutureBuilder<List<Film>>(
+              future: FilmsApi.getTopAwait(),
+              builder: (context, snapshot)
+              {
+                final films = snapshot.data;
+          
+                return ListView.builder(
+                  itemCount: films == null ? 0 : films.length,
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index)
+                  {
+                    final film = films![index];
+                    return  Row(
+                      children: [
+                        Container(
+                          child: ListFilm(image: film.posterUrlPreview, filmId: film.filmId,)
+                          ),
+                      ],
+                    );
+                  }
+                );
+              }
+            ),
+          ),
+          Expanded(
+            child: FutureBuilder<List<Film>>(
+              future: FilmsApi.getTopBest(),
+              builder: (context, snapshot)
+              {
+                final films = snapshot.data;
+          
+                return ListView.builder(
+                  itemCount: films == null ? 0 : films.length,
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index)
+                  {
+                    final film = films![index];
+                    return  Row(
+                      children: [
+                        Container(
+                          child: ListFilm(image: film.posterUrlPreview, filmId: film.filmId,)
+                          ),
+                      ],
+                    );
+                  }
+                );
+              }
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: bottomNavigation(),
     );

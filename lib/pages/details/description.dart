@@ -26,7 +26,7 @@ class DescriptionPage extends StatelessWidget {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-                  child: SizedBox(
+                  child: const SizedBox(
                     height: 30,
                     child: AutoSizeText('Евангелион: Конец Евангелиона',
                       presetFontSizes: [40, 20, 14],
@@ -39,7 +39,7 @@ class DescriptionPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(top: 2, left: 10),
+                      margin: const EdgeInsets.only(top: 2, left: 10),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(25.0),
                         child: Image.asset('assets/images/eva.jpg',

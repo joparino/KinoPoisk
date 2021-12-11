@@ -1,8 +1,3 @@
-// To parse this JSON data, do
-//
-//     final welcome8 = welcome8FromJson(jsonString);
-
-
 
 class Film {
     Film({
@@ -23,7 +18,7 @@ class Film {
     int filmId;
     String nameRu;
     String? nameEn;
-    String year;
+    String? year;
     String? filmLength;
     List<Country> countries;
     List<Genre> genres;
