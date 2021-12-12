@@ -1,6 +1,6 @@
 import 'package:flok/components/bottom_navigation.dart';
 import 'package:flok/components/scroll_list.dart';
-import 'package:flok/model/films.dart';
+import 'package:flok/model/top_film.dart';
 import 'package:flok/request/request.dart';
 import 'package:flutter/material.dart';
 
@@ -32,14 +32,7 @@ class FilmsPage extends StatelessWidget {
                   itemBuilder: (context, index)
                   {
                     final film = films[index];
-                    return  Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(top: 14),
-                          child: ListFilm(image: film.posterUrlPreview, filmId: film.filmId)
-                          ),
-                      ],
-                    );
+                    return  ListFilm(film: film);
                   }
                 );
               }
@@ -59,13 +52,7 @@ class FilmsPage extends StatelessWidget {
                   itemBuilder: (context, index)
                   {
                     final film = films![index];
-                    return  Row(
-                      children: [
-                        Container(
-                          child: ListFilm(image: film.posterUrlPreview, filmId: film.filmId,)
-                          ),
-                      ],
-                    );
+                    return ListFilm(film: film);
                   }
                 );
               }
@@ -85,13 +72,7 @@ class FilmsPage extends StatelessWidget {
                   itemBuilder: (context, index)
                   {
                     final film = films![index];
-                    return  Row(
-                      children: [
-                        Container(
-                          child: ListFilm(image: film.posterUrlPreview, filmId: film.filmId,)
-                          ),
-                      ],
-                    );
+                    return  ListFilm(film: film);
                   }
                 );
               }

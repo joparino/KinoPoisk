@@ -1,4 +1,3 @@
-
 class Film {
     Film({
         required this.filmId,
@@ -18,8 +17,8 @@ class Film {
     int filmId;
     String nameRu;
     String? nameEn;
-    String? year;
-    String? filmLength;
+    String year;
+    String filmLength;
     List<Country> countries;
     List<Genre> genres;
     String? rating;
@@ -32,8 +31,8 @@ class Film {
         filmId: json["filmId"],
         nameRu: json["nameRu"],
         nameEn: json["nameEn"],
-        year: json["year"],
-        filmLength: json["filmLength"],
+        year: json["year"] ?? "",
+        filmLength: json["filmLength"] ?? "",
         countries: List<Country>.from(json["countries"].map((x) => Country.fromJson(x))),
         genres: List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
         rating: json["rating"],
