@@ -16,6 +16,7 @@ class DescriptionPage extends StatefulWidget {
 
 class _DescriptionPageState extends State<DescriptionPage> {
 
+
   @override
   Widget build(BuildContext context) {
 
@@ -40,6 +41,10 @@ class _DescriptionPageState extends State<DescriptionPage> {
 
             final details = snapshot.data;
             final genresLength = details!.genres.length;
+            List<String> list = details.genres[genresLength].genre as List<String>;
+            final stringGenre = list.join();
+            var autoSizeText = AutoSizeText('Жанр: $stringGenre');
+
 
             return Row(
               children: [
@@ -86,7 +91,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               margin: EdgeInsets.only(top: 34, left: 12),
                               child: SizedBox(
                                 width: 70,
-                                child: AutoSizeText('Жанр: ${details.genres[genresLength].genre}')
+                                child: AutoSizeText('Жанр: $stringGenre')
                                 ),
                             ),
                             Container(
