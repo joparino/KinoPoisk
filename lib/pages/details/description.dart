@@ -41,9 +41,48 @@ class _DescriptionPageState extends State<DescriptionPage> {
 
             final details = snapshot.data;
             final genresLength = details!.genres.length;
-            List<String> list = details.genres[genresLength].genre as List<String>;
-            final stringGenre = list.join();
-            var autoSizeText = AutoSizeText('Жанр: $stringGenre');
+            final listGenre = details.genres;
+            final listCountry = details.countries;
+            final countriesLength = details.countries.length;
+            
+            Widget getTextGenres(List<Genre> listGenre)
+            {
+              String listGenres = "";
+              for(var i = 0; i < genresLength; i++){
+                if(genresLength == 1)
+                {
+                  listGenres += details.genres[0].genre;
+                  return AutoSizeText('Жанр: $listGenres');
+                }
+                if(i == genresLength-1)
+                {
+                  listGenres += details.genres[i].genre;
+                  break;
+                }
+                listGenres += details.genres[i].genre + ", ";
+              }
+              return AutoSizeText('Жанры: $listGenres');
+            }
+
+            Widget getTextCountries(List<Countrys> listCountry)
+            {
+              String listCountries = "";
+              for(var i = 0; i < countriesLength; i++){
+                if(countriesLength == 1)
+                {
+                  listCountries += details.countries[0].country;
+                  return AutoSizeText('Страна: $listCountries');
+                }
+                if(i == countriesLength-1)
+                {
+                  listCountries += details.countries[i].country;
+                  break;
+                }
+                listCountries += details.countries[i].country + ", ";
+              }
+              return AutoSizeText('Страны: $listCountries');
+            }
+
 
 
             return Row(
@@ -54,10 +93,11 @@ class _DescriptionPageState extends State<DescriptionPage> {
                     Container(
                       padding: EdgeInsets.only(top: 10, left: 10, right: 10),
                       child: SizedBox(
-                        height: 30,
+                        width: 370,
                         child: AutoSizeText(details.nameRu,
-                          presetFontSizes: [40, 20, 14],
-                          maxLines: 3,
+                          style: TextStyle(fontSize: 28),
+                          stepGranularity: 2,
+                          maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         )
                       ),
@@ -84,47 +124,41 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               child: Text('Год: ' + details.year.toString()),
                             ),
                             Container(
-                              margin: EdgeInsets.only(top: 34, left: 12),
+                              margin: EdgeInsets.only(top: 20, left: 12),
                               child: Text('Время: ' + details.filmLength.toString()),
                             ),
+                            
                             Container(
-                              margin: EdgeInsets.only(top: 34, left: 12),
+                              margin: EdgeInsets.only(top: 20, left: 12),
                               child: SizedBox(
-                                width: 70,
-                                child: AutoSizeText('Жанр: $stringGenre')
-                                ),
+                                width: 178,
+                                height: 50,
+                                child: getTextGenres(listGenre)
+                              ),
                             ),
                             Container(
-                              margin: EdgeInsets.only(top: 34, left: 12),
+                              margin: EdgeInsets.only(left: 12),
                               child: SizedBox(
-                                width: 70,
-                                child: AutoSizeText('Жанр: ${details.genres[genresLength].genre}')
-                                ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(top: 34, left: 12),
-                              child: SizedBox(
-                                width: 70,
-                                child: AutoSizeText('Страна: ' + details.countries[0].country)
-                                ),
+                                width: 178,
+                                height: 50,
+                                child: getTextCountries(listCountry)
+                              ),
                             ),
                           ],
                         ),
                       ],
                     ),
                     Container(
-                        padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-                        child: SizedBox(
-                        height: 240,
-                        width: 370,
+                      height: 240,
+                      width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.only(top: 12, left: 10, right: 10),
                         child: AutoSizeText(
-                          '',
-                        style: TextStyle(fontSize: 30),
-                        minFontSize: 18,
-                        maxLines: 10,
-                        overflow: TextOverflow.ellipsis,
-                        )
-                      ),
+                          details.description,
+                          style: TextStyle(fontSize: 24),
+                          stepGranularity: 4,
+                          maxLines: 12,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                     ),
                   ],
                 ),

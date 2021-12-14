@@ -48,7 +48,7 @@ class DetailsFilm {
         ratingFilmCritics: json["ratingFilmCritics"] ?? 0.0,
         webUrl: json["webUrl"],
         year: json["year"],
-        filmLength: json["filmLength"] ?? '',
+        filmLength: json["filmLength"] ?? 0,
         slogan: json["slogan"] ?? '',
         description: json["description"] ?? '',
         shortDescription: json["shortDescription"] ?? '',
@@ -102,7 +102,7 @@ class Genre {
     String genre;
 
     factory Genre.fromJson(Map<String, dynamic> json) => Genre(
-        genre: json["genre"],
+        genre: json["genre"] ?? '',
     );
 
     Map<String, dynamic> toJson() => {
