@@ -1,5 +1,6 @@
 import 'package:flok/main.dart';
 import 'package:flok/pages/films.dart';
+import 'package:flok/pages/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -34,6 +35,15 @@ class bottomNavigation extends StatelessWidget {
               );
             },
             icon: SvgPicture.asset('assets/icons/camera.svg')
+            ),
+            IconButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context)=> SearchPage(),
+                ),
+              );
+            },
+            icon: SvgPicture.asset('assets/icons/search.svg')
             ),
           ],
       ),

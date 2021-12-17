@@ -16,7 +16,7 @@ class FilmsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: const EdgeInsets.only(top: 18, left: 14),
+              margin: const EdgeInsets.only(top: 24, left: 14),
               child: const Text('Фильмы и сериалы',
               style: TextStyle(fontSize: 28),
               ),
@@ -68,6 +68,11 @@ class FilmsPage extends StatelessWidget {
                 future: FilmsApi.getTopAwait(),
                 builder: (context, snapshot)
                 {
+                  if(!snapshot.hasData)
+                  {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
                   final films = snapshot.data;
             
                   return ListView.builder(
@@ -96,6 +101,11 @@ class FilmsPage extends StatelessWidget {
                 future: FilmsApi.getTopBest(),
                 builder: (context, snapshot)
                 {
+                  if(!snapshot.hasData)
+                  {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
                   final films = snapshot.data;
             
                   return ListView.builder(
