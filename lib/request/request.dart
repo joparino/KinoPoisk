@@ -86,8 +86,10 @@ class FilmsApi{
       headers: headers,
     );
     final responseText = utf8.decode(response.bodyBytes);
-    final x = json.decode(responseText);
     print(response.statusCode);
+    print(responseText);
+    final x = json.decode(responseText);
+
     FilmSearched searchedFilm = FilmSearched.fromJson(x);
     return searchedFilm;
   }

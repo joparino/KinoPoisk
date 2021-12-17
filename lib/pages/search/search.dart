@@ -14,7 +14,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPage extends State<SearchPage> {
-  String x = 'Евангелион';
+  String x = '';
   bool isTexting = true;
   @override
   Widget build(BuildContext context) {

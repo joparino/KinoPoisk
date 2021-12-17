@@ -1,5 +1,6 @@
 import 'package:flok/main.dart';
 import 'package:flok/pages/films.dart';
+import 'package:flok/pages/profile/profile_body.dart';
 import 'package:flok/pages/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

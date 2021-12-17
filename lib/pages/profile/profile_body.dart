@@ -1,11 +1,10 @@
 import 'package:flok/pages/profile/grid_view.dart';
-import 'package:flok/components/scroll_list.dart';
 import 'package:flutter/material.dart';
 
 
 
-class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+class MainWindow extends StatelessWidget {
+  const MainWindow({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +34,6 @@ class Body extends StatelessWidget {
                       ),
                       children: [
                         GridWidget(image:'assets/images/eva.jpg'),
-                        GridWidget(image:'assets/images/eva.jpg'),
-                        GridWidget(image:'assets/images/eva.jpg'),
-                        GridWidget(image:'assets/images/eva.jpg'),
-                        GridWidget(image:'assets/images/eva.jpg'),
-                        GridWidget(image:'assets/images/eva.jpg'),
-                        GridWidget(image:'assets/images/eva.jpg'),
                       ],
                     ),
                   ),
@@ -54,12 +47,6 @@ class Body extends StatelessWidget {
                       ),
                       children: [
                         GridWidget(image:'assets/images/eva.jpg'),
-                        GridWidget(image:'assets/images/eva.jpg'),
-                        GridWidget(image:'assets/images/eva.jpg'),
-                        GridWidget(image:'assets/images/eva.jpg'),
-                        GridWidget(image:'assets/images/arcane.jpg'),
-                        GridWidget(image:'assets/images/arcane.jpg'),
-                        GridWidget(image:'assets/images/eva.jpg'),
                       ],
                     ),
                   ),
@@ -72,12 +59,6 @@ class Body extends StatelessWidget {
                         crossAxisCount: 2,
                       ),
                       children: [
-                        GridWidget(image:'assets/images/eva.jpg'),
-                        GridWidget(image:'assets/images/eva.jpg'),
-                        GridWidget(image:'assets/images/arcane.jpg'),
-                        GridWidget(image:'assets/images/eva.jpg'),
-                        GridWidget(image:'assets/images/eva.jpg'),
-                        GridWidget(image:'assets/images/eva.jpg'),
                         GridWidget(image:'assets/images/eva.jpg'),
                       ],
                     ),

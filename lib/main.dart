@@ -1,3 +1,5 @@
+import 'package:flok/pages/auth/auth.dart';
+import 'package:flok/pages/auth/landing.dart';
 import 'package:flok/pages/profile/profile_body.dart';
 import 'package:flok/components/bottom_navigation.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.white,
         brightness: Brightness.light,
       ),
-      home: HomePage(),
+      home: Landind(),
     );
   }
 }
@@ -26,12 +28,11 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: Body(),
+      body: MainWindow(),
       bottomNavigationBar: bottomNavigation(),
     );
   }
-
-  AppBar buildAppBar() {
+   AppBar buildAppBar() {
     return AppBar(
       elevation: 0,
       shadowColor: Colors.white,
