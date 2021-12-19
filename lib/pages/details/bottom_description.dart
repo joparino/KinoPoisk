@@ -1,3 +1,5 @@
+import 'package:flok/model/details_film.dart';
+import 'package:flok/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -9,25 +11,23 @@ class BottomDesription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 20,right: 20),
+      padding: EdgeInsets.only(left: 20, right: 20),
       height: 80,
       color: Colors.white,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset('assets/icons/heart.svg')
-            ),
-            IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset('assets/icons/eyeoutline.svg')
-            ),
-            IconButton(
-            onPressed: () {}, 
-            icon: SvgPicture.asset('assets/icons/bookmark.svg')
-            ),
-          ],
+              onPressed: () {
+              },
+              icon: SvgPicture.asset('assets/icons/heart.svg')),
+          IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset('assets/icons/eyeoutline.svg')),
+          IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset('assets/icons/bookmark.svg')),
+        ],
       ),
     );
   }

@@ -16,7 +16,7 @@ class DetailsFilm {
         required this.shortDescription,
         required this.ratingAgeLimits,
         required this.countries,
-        required this.genres,
+        required this.genres
     });
 
     int kinopoiskId;
@@ -57,7 +57,7 @@ class DetailsFilm {
         genres: List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
     );
 
-    Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toMap() => {
         "kinopoiskId": kinopoiskId,
         "nameRu": nameRu,
         "nameOriginal": nameOriginal,
@@ -73,8 +73,8 @@ class DetailsFilm {
         "description": description,
         "shortDescription": shortDescription,
         "ratingAgeLimits": ratingAgeLimits,
-        "countries": List<dynamic>.from(countries.map((x) => x.toJson())),
-        "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
+        "countries": List<dynamic>.from(countries.map((x) => x.toMap())),
+        "genres": List<dynamic>.from(genres.map((x) => x.toMap())),
     };
 }
 
@@ -89,7 +89,7 @@ class Countrys {
         country: json["country"] ?? '',
     );
 
-    Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toMap() => {
         "country": country,
     };
 }
@@ -105,7 +105,7 @@ class Genre {
         genre: json["genre"] ?? '',
     );
 
-    Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toMap() => {
         "genre": genre,
     };
 }

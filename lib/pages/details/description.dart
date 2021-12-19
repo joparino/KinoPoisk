@@ -3,6 +3,7 @@ import 'package:flok/components/constants.dart';
 import 'package:flok/model/details_film.dart';
 import 'package:flok/pages/details/bottom_description.dart';
 import 'package:flok/request/request.dart';
+import 'package:flok/services/database.dart';
 import 'package:flutter/material.dart';
 
 
@@ -19,7 +20,6 @@ class _DescriptionPageState extends State<DescriptionPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
          iconTheme: IconThemeData(
@@ -28,7 +28,6 @@ class _DescriptionPageState extends State<DescriptionPage> {
         shadowColor: Colors.white,
         backgroundColor: Colors.white,
       ),
-      bottomNavigationBar: BottomDesription(),
       body: SingleChildScrollView(
         child: FutureBuilder<DetailsFilm>(
           future: FilmsApi.getDetailsFilm(widget.filmId),
@@ -148,6 +147,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
                         ),
                       ],
                     ),
+                    ElevatedButton(
+                      onPressed: () {
+                        DatabaseService().addFilm(details);
+                      },
+                      child: Text('хай'),
+                    ),
                     Container(
                       height: 240,
                       width: MediaQuery.of(context).size.width,
@@ -167,6 +172,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
           }
         ),
       ),
+      bottomNavigationBar: BottomDesription(),
     );
   }
 }

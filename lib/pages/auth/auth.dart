@@ -1,4 +1,7 @@
+import 'package:flok/services/auth.dart';
+import 'package:flok/services/user.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Authorization extends StatefulWidget {
   Authorization({Key? key}) : super(key: key);
@@ -8,22 +11,72 @@ class Authorization extends StatefulWidget {
 }
 
 class _Authorization extends State<Authorization> {
-  TextEditingController _loginController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
-  late String _login;
+  late String _email;
   late String _password;
   bool ShowLogin = true;
+
+  AuthService _authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
 
-    void _loginUser(){
-      _login = _loginController.text;
+    void _loginUser() async{
+      _email = _emailController.text;
       _password = _passwordController.text;
 
-      _loginController.clear();
-      _passwordController.clear();
+      if(_email.isEmpty || _password.isEmpty)
+      {
+        return;
+      }
+
+      AuthUser? user = await _authService.signInWithEmailAndPassword(_email.trim(), _password.trim());
+      if(user == null)
+      {
+        Fluttertoast.showToast(
+        msg: "Ошибка в пароле или email",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+        );
+      }
+      else
+      {
+        _emailController.clear();
+        _passwordController.clear();
+      }
+    }
+    
+    void _registerUser() async{
+      _email = _emailController.text;
+      _password = _passwordController.text;
+
+      if(_email.isEmpty || _password.isEmpty)
+      {
+        return;
+      }
+
+      AuthUser? user = await _authService.registerWithEmailAndPassword(_email.trim(), _password.trim());
+      if(user == null)
+      {
+        Fluttertoast.showToast(
+        msg: "Не могу зарегистрировать вас",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+        );
+      }
+      else
+      {
+        _emailController.clear();
+        _passwordController.clear();
+      }
     }
 
     Widget _text(Icon icon, String hint, TextEditingController controller, bool obsecure){
@@ -60,7 +113,7 @@ class _Authorization extends State<Authorization> {
           children: [
             Padding(
               padding: EdgeInsets.only(bottom: 20, top: 20),
-              child: _text(Icon(Icons.login), 'Логин', _loginController, false),
+              child: _text(Icon(Icons.login), 'Логин', _emailController, false),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 20, top: 20),
@@ -124,7 +177,7 @@ class _Authorization extends State<Authorization> {
             )
             :Column(
               children: [
-                _field('Зарегистрироваться', _loginUser),
+                _field('Зарегистрироваться', _registerUser),
                 Padding(
                   padding: EdgeInsets.only(top: 10),
                   child: GestureDetector(

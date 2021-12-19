@@ -1,13 +1,27 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flok/pages/profile/grid_view.dart';
+import 'package:flok/services/user.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 
-class MainWindow extends StatelessWidget {
+class MainWindow extends StatefulWidget {
   const MainWindow({Key? key}) : super(key: key);
 
   @override
+  State<MainWindow> createState() => _MainWindowState();
+}
+
+class _MainWindowState extends State<MainWindow> {
+
+  @override
   Widget build(BuildContext context) {
+  User? user = FirebaseAuth.instance.currentUser;
+  final uid = AuthUser.fromFirebase(user).id;
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('filmsDetails').where('user', isEqualTo: uid).snapshots();
   return DefaultTabController(
       length: 3,
       child: Column(
@@ -26,14 +40,33 @@ class MainWindow extends StatelessWidget {
                 children: [
                   Container(
                     margin: EdgeInsets.only(top: 10, right: 8, left: 8),
-                    child: GridView(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisExtent: 250,
-                        mainAxisSpacing: 10,
-                        crossAxisCount: 2,
-                      ),
+                    child: Column(
                       children: [
-                        GridWidget(image:'assets/images/eva.jpg'),
+                        StreamBuilder<QuerySnapshot>(
+                          stream: _usersStream,
+                          builder: (BuildContext  context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                            if (snapshot.connectionState == ConnectionState.waiting) {
+                              return Text("Loading");
+                            }
+
+                            return Expanded(
+                              child: SizedBox(
+                                height: 200.0,
+                                child: GridView(
+                                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                    mainAxisExtent: 250,
+                                    mainAxisSpacing: 10,
+                                    crossAxisCount: 2,
+                                  ),
+                                  children: snapshot.data!.docs.map<Widget>((DocumentSnapshot document) {
+                                  Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+                                    return GridWidget(image: data['posterUrlPreview']);
+                                  }).toList(),
+                                ),
+                              ),
+                            );
+                          }
+                        ),
                       ],
                     ),
                   ),
@@ -46,7 +79,7 @@ class MainWindow extends StatelessWidget {
                         crossAxisCount: 2,
                       ),
                       children: [
-                        GridWidget(image:'assets/images/eva.jpg'),
+                        GridWidget(image: 'assets/images/eva.jpg'),
                       ],
                     ),
                   ),
@@ -59,7 +92,7 @@ class MainWindow extends StatelessWidget {
                         crossAxisCount: 2,
                       ),
                       children: [
-                        GridWidget(image:'assets/images/eva.jpg'),
+                        GridWidget(image: 'assets/images/eva.jpg'),
                       ],
                     ),
                   ),

@@ -1,22 +1,34 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flok/pages/auth/auth.dart';
 import 'package:flok/pages/auth/landing.dart';
 import 'package:flok/pages/profile/profile_body.dart';
 import 'package:flok/components/bottom_navigation.dart';
+import 'package:flok/services/auth.dart';
+import 'package:flok/services/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
-main() => runApp(MyApp());
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Sample App',
-      theme: ThemeData(
-        primaryColor: Colors.white,
-        brightness: Brightness.light,
+    return StreamProvider<AuthUser?>.value(
+      value: AuthService().currentUser,
+      initialData: null,
+      child: MaterialApp(
+        title: 'Sample App',
+        theme: ThemeData(
+          primaryColor: Colors.white,
+          brightness: Brightness.light,
+        ),
+        home: Landind(),
       ),
-      home: Landind(),
     );
   }
 }
@@ -32,15 +44,22 @@ class HomePage extends StatelessWidget {
       bottomNavigationBar: bottomNavigation(),
     );
   }
-   AppBar buildAppBar() {
+
+  AppBar buildAppBar() {
     return AppBar(
       elevation: 0,
       shadowColor: Colors.white,
       backgroundColor: Colors.white,
       leading: IconButton(
-      onPressed: () {},
-      icon: SvgPicture.asset('assets/icons/hammenu.svg')
-     ),
+          onPressed: () {}, icon: SvgPicture.asset('assets/icons/hammenu.svg')),
+      actions: [
+        TextButton.icon(
+            onPressed: () {
+              AuthService().logOut();
+            },
+            icon: Icon(Icons.supervised_user_circle, color: Colors.black),
+            label: SizedBox.shrink())
+      ],
     );
   }
 }
