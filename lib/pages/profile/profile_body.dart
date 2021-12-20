@@ -21,7 +21,9 @@ class _MainWindowState extends State<MainWindow> {
   Widget build(BuildContext context) {
   User? user = FirebaseAuth.instance.currentUser;
   final uid = AuthUser.fromFirebase(user).id;
-  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('filmsDetails').where('user', isEqualTo: uid).snapshots();
+  final Stream<QuerySnapshot> _isWatched = FirebaseFirestore.instance.collection('filmsDetails').where('user', isEqualTo: uid).where('isWatched', isEqualTo: 1).snapshots();
+  final Stream<QuerySnapshot> _isWanted = FirebaseFirestore.instance.collection('filmsDetails').where('user', isEqualTo: uid).where('isWanted', isEqualTo: 1).snapshots();
+  final Stream<QuerySnapshot> _isLiked = FirebaseFirestore.instance.collection('filmsDetails').where('user', isEqualTo: uid).where('isLiked', isEqualTo: 1).snapshots();
   return DefaultTabController(
       length: 3,
       child: Column(
@@ -43,7 +45,7 @@ class _MainWindowState extends State<MainWindow> {
                     child: Column(
                       children: [
                         StreamBuilder<QuerySnapshot>(
-                          stream: _usersStream,
+                          stream: _isWatched,
                           builder: (BuildContext  context, AsyncSnapshot<QuerySnapshot> snapshot) {
                             if (snapshot.connectionState == ConnectionState.waiting) {
                               return Text("Loading");
@@ -72,27 +74,65 @@ class _MainWindowState extends State<MainWindow> {
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 10, right: 8, left: 8),
-                    child: GridView(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisExtent: 250,
-                        mainAxisSpacing: 10,
-                        crossAxisCount: 2,
-                      ),
+                    child: Column(
                       children: [
-                        GridWidget(image: 'assets/images/eva.jpg'),
+                        StreamBuilder<QuerySnapshot>(
+                          stream: _isWanted,
+                          builder: (BuildContext  context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                            if (snapshot.connectionState == ConnectionState.waiting) {
+                              return Text("Loading");
+                            }
+
+                            return Expanded(
+                              child: SizedBox(
+                                height: 200.0,
+                                child: GridView(
+                                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                    mainAxisExtent: 250,
+                                    mainAxisSpacing: 10,
+                                    crossAxisCount: 2,
+                                  ),
+                                  children: snapshot.data!.docs.map<Widget>((DocumentSnapshot document) {
+                                  Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+                                    return GridWidget(image: data['posterUrlPreview']);
+                                  }).toList(),
+                                ),
+                              ),
+                            );
+                          }
+                        ),
                       ],
                     ),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 10, right: 8, left: 8),
-                    child: GridView(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisExtent: 250,
-                        mainAxisSpacing: 10,
-                        crossAxisCount: 2,
-                      ),
+                    child: Column(
                       children: [
-                        GridWidget(image: 'assets/images/eva.jpg'),
+                        StreamBuilder<QuerySnapshot>(
+                          stream: _isLiked,
+                          builder: (BuildContext  context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                            if (snapshot.connectionState == ConnectionState.waiting) {
+                              return Text("Loading");
+                            }
+
+                            return Expanded(
+                              child: SizedBox(
+                                height: 200.0,
+                                child: GridView(
+                                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                    mainAxisExtent: 250,
+                                    mainAxisSpacing: 10,
+                                    crossAxisCount: 2,
+                                  ),
+                                  children: snapshot.data!.docs.map<Widget>((DocumentSnapshot document) {
+                                  Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+                                    return GridWidget(image: data['posterUrlPreview']);
+                                  }).toList(),
+                                ),
+                              ),
+                            );
+                          }
+                        ),
                       ],
                     ),
                   ),

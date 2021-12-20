@@ -50,14 +50,12 @@ class HomePage extends StatelessWidget {
       elevation: 0,
       shadowColor: Colors.white,
       backgroundColor: Colors.white,
-      leading: IconButton(
-          onPressed: () {}, icon: SvgPicture.asset('assets/icons/hammenu.svg')),
       actions: [
         TextButton.icon(
             onPressed: () {
               AuthService().logOut();
             },
-            icon: Icon(Icons.supervised_user_circle, color: Colors.black),
+            icon: Icon(Icons.logout, color: Colors.black),
             label: SizedBox.shrink())
       ],
     );
