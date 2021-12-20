@@ -62,7 +62,7 @@ class _MainWindowState extends State<MainWindow> {
                                   ),
                                   children: snapshot.data!.docs.map<Widget>((DocumentSnapshot document) {
                                   Map<String, dynamic> data = document.data() as Map<String, dynamic>;
-                                    return GridWidget(image: data['posterUrlPreview']);
+                                    return GridWidget(image: data['posterUrlPreview'], film: data['kinopoiskId']);
                                   }).toList(),
                                 ),
                               ),
@@ -94,7 +94,7 @@ class _MainWindowState extends State<MainWindow> {
                                   ),
                                   children: snapshot.data!.docs.map<Widget>((DocumentSnapshot document) {
                                   Map<String, dynamic> data = document.data() as Map<String, dynamic>;
-                                    return GridWidget(image: data['posterUrlPreview']);
+                                    return GridWidget(image: data['posterUrlPreview'], film: data['kinopoiskId']);
                                   }).toList(),
                                 ),
                               ),
@@ -126,7 +126,7 @@ class _MainWindowState extends State<MainWindow> {
                                   ),
                                   children: snapshot.data!.docs.map<Widget>((DocumentSnapshot document) {
                                   Map<String, dynamic> data = document.data() as Map<String, dynamic>;
-                                    return GridWidget(image: data['posterUrlPreview']);
+                                    return GridWidget(image: data['posterUrlPreview'], film: data['kinopoiskId']);
                                   }).toList(),
                                 ),
                               ),
