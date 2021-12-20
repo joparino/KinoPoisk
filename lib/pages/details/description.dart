@@ -122,7 +122,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                     child: getTextGenres(listGenre)),
                               ),
                               Container(
-                                margin: EdgeInsets.only(left: 12),
+                                margin: EdgeInsets.only(top: 20,left: 12),
                                 child: SizedBox(
                                     width: 178,
                                     height: 50,
@@ -138,7 +138,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                             width: 140,
                             height: 40,
                             padding: const EdgeInsets.only(
-                                left: 10, top: 4, right: 10),
+                                left: 14, top: 4, right: 10),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.grey[300], // background
@@ -169,7 +169,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                           Container(
                             width: 120,
                             height: 40,
-                            padding: const EdgeInsets.only(top: 4, right: 4),
+                            padding: const EdgeInsets.only(top: 4, right: 14),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.grey[300], // background
@@ -191,7 +191,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                           details.description,
                           style: TextStyle(fontSize: 24),
                           stepGranularity: 4,
-                          maxLines: 12,
+                          maxLines: 16,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),

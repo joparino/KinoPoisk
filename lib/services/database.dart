@@ -8,14 +8,12 @@ import 'package:flok/services/user.dart';
 import 'package:provider/provider.dart';
 
 class DatabaseService{
-  final CollectionReference _filmCollection = FirebaseFirestore.instance.collection('films');
-  final CollectionReference _filmDetailsCollection = FirebaseFirestore.instance.collection('filmsDetails');
+  static User? user = FirebaseAuth.instance.currentUser;
+  final  _filmDetailsCollection = FirebaseFirestore.instance.collection(user!.uid.toString());
 
 
   Future addFilmIsWatched(DetailsFilm detailsFilm) async{
-    User? user = FirebaseAuth.instance.currentUser;
     Map<String, dynamic> map = HashMap();
-    map.addAll({'user': AuthUser.fromFirebase(user).id});
     map.addAll({'kinopoiskId': detailsFilm.kinopoiskId});
     map.addAll({'posterUrlPreview': detailsFilm.posterUrlPreview});
     map.addAll({'isWatched': 1});
@@ -25,9 +23,7 @@ class DatabaseService{
   }
 
   Future addFilmIsWanted(DetailsFilm detailsFilm) async{
-    User? user = FirebaseAuth.instance.currentUser;
     Map<String, dynamic> map = HashMap();
-    map.addAll({'user': AuthUser.fromFirebase(user).id});
     map.addAll({'kinopoiskId': detailsFilm.kinopoiskId});
     map.addAll({'posterUrlPreview': detailsFilm.posterUrlPreview});
     map.addAll({'isWatched': 0});
@@ -38,9 +34,7 @@ class DatabaseService{
   }
 
   Future addFilmIsLiked(DetailsFilm detailsFilm) async{
-    User? user = FirebaseAuth.instance.currentUser;
     Map<String, dynamic> map = HashMap();
-    map.addAll({'user': AuthUser.fromFirebase(user).id});
     map.addAll({'kinopoiskId': detailsFilm.kinopoiskId});
     map.addAll({'posterUrlPreview': detailsFilm.posterUrlPreview});
     map.addAll({'isWatched': 1});

@@ -16,6 +16,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPage extends State<SearchPage> {
   String x = '';
   bool isTexting = true;
+  TextEditingController _textController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +30,6 @@ class _SearchPage extends State<SearchPage> {
               child: TextField(
                 onSubmitted: (text){
                   x = text;
-                  // isTexting = false;
                 },
                 cursorColor: Colors.black,
                   style: TextStyle(
@@ -47,10 +47,8 @@ class _SearchPage extends State<SearchPage> {
                   )
                 ),
               ),
+              
             ),
-          ),
-          Container(
-            child: Text(x),
           ),
           Container(
               width: MediaQuery.of(context).size.width,
