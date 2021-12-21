@@ -40,7 +40,7 @@ class DetailsFilm {
     factory DetailsFilm.fromJson(Map<String, dynamic> json) => DetailsFilm(
         kinopoiskId: json["kinopoiskId"],
         nameRu: json["nameRu"],
-        nameOriginal: json["nameOriginal"],
+        nameOriginal: json["nameOriginal"] ?? '',
         posterUrl: json["posterUrl"],
         posterUrlPreview: json["posterUrlPreview"],
         ratingKinopoisk: json["ratingKinopoisk"] ?? 0.0,

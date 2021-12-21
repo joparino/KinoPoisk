@@ -21,15 +21,15 @@ class _MainWindowState extends State<MainWindow> {
     final uid = AuthUser.fromFirebase(user).id;
     final Stream<QuerySnapshot> _isWatched = FirebaseFirestore.instance
         .collection(uid.toString())
-        .where('isWatched', isEqualTo: 1)
+        .where('isWatched', isEqualTo: true)
         .snapshots();
     final Stream<QuerySnapshot> _isWanted = FirebaseFirestore.instance
         .collection(uid.toString())
-        .where('isWanted', isEqualTo: 1)
+        .where('isWanted', isEqualTo: true)
         .snapshots();
     final Stream<QuerySnapshot> _isLiked = FirebaseFirestore.instance
         .collection(uid.toString())
-        .where('isLiked', isEqualTo: 1)
+        .where('isLiked', isEqualTo: true)
         .snapshots();
     return DefaultTabController(
       length: 3,

@@ -65,7 +65,7 @@ class _Authorization extends State<Authorization> {
       {
         Fluttertoast.showToast(
         msg: "Не могу зарегистрировать вас",
-        toastLength: Toast.LENGTH_SHORT,
+        toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.CENTER,
         backgroundColor: Colors.red,
         textColor: Colors.white,
@@ -113,7 +113,7 @@ class _Authorization extends State<Authorization> {
           children: [
             Padding(
               padding: EdgeInsets.only(bottom: 20, top: 20),
-              child: _text(Icon(Icons.login), 'Логин', _emailController, false),
+              child: _text(Icon(Icons.login), 'Электронная почта', _emailController, false),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 20, top: 20),
@@ -161,7 +161,7 @@ class _Authorization extends State<Authorization> {
             ShowLogin
             ? Column(
               children: [
-                _field('Логин', _loginUser),
+                _field('Войти', _loginUser),
                 Padding(
                   padding: EdgeInsets.only(top: 10),
                   child: GestureDetector(

@@ -16,8 +16,8 @@ class DatabaseService{
     Map<String, dynamic> map = HashMap();
     map.addAll({'kinopoiskId': detailsFilm.kinopoiskId});
     map.addAll({'posterUrlPreview': detailsFilm.posterUrlPreview});
-    map.addAll({'isWatched': 1});
-    map.addAll({'isWanted': 0});
+    map.addAll({'isWatched': true});
+    map.addAll({'isWanted': false});
 
     return await _filmDetailsCollection.doc((detailsFilm.kinopoiskId).toString()).set(map);
   }
@@ -26,9 +26,9 @@ class DatabaseService{
     Map<String, dynamic> map = HashMap();
     map.addAll({'kinopoiskId': detailsFilm.kinopoiskId});
     map.addAll({'posterUrlPreview': detailsFilm.posterUrlPreview});
-    map.addAll({'isWatched': 0});
-    map.addAll({'isWanted': 1});
-    map.addAll({'isLiked': 0});
+    map.addAll({'isWatched': false});
+    map.addAll({'isWanted': true});
+    map.addAll({'isLiked': false});
 
     return await _filmDetailsCollection.doc((detailsFilm.kinopoiskId).toString()).set(map);
   }
@@ -37,9 +37,9 @@ class DatabaseService{
     Map<String, dynamic> map = HashMap();
     map.addAll({'kinopoiskId': detailsFilm.kinopoiskId});
     map.addAll({'posterUrlPreview': detailsFilm.posterUrlPreview});
-    map.addAll({'isWatched': 1});
-    map.addAll({'isWanted': 0});
-    map.addAll({'isLiked': 1});
+    map.addAll({'isWatched': false});
+    map.addAll({'isWanted': true});
+    map.addAll({'isLiked': false});
 
     return await _filmDetailsCollection.doc((detailsFilm.kinopoiskId).toString()).set(map);
   }

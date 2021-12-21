@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flok/pages/auth/auth.dart';
+import 'package:flok/pages/auth/landing.dart';
 import 'package:flok/services/user.dart';
 
 class AuthService {
@@ -33,7 +34,7 @@ class AuthService {
   
   Future logOut() async {
     await _firebaseAuth.signOut();
-    return Authorization();
+    return Landind();
   }
 
   Stream<AuthUser?> get currentUser {
