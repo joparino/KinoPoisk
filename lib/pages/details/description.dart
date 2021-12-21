@@ -122,7 +122,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                     child: getTextGenres(listGenre)),
                               ),
                               Container(
-                                margin: EdgeInsets.only(top: 20,left: 12),
+                                margin: EdgeInsets.only(top: 20, left: 12),
                                 child: SizedBox(
                                     width: 178,
                                     height: 50,
@@ -135,10 +135,10 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       Row(
                         children: [
                           Container(
-                            width: 140,
-                            height: 40,
+                            width: 110,
+                            height: 50,
                             padding: const EdgeInsets.only(
-                                left: 14, top: 4, right: 10),
+                                left: 14, top: 8, right: 10),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.grey[300], // background
@@ -147,14 +147,13 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               onPressed: () {
                                 DatabaseService().addFilmIsWatched(details);
                               },
-                              child: Text('Посмотрел'),
+                              child: Icon(Icons.check_circle_rounded),
                             ),
                           ),
                           Container(
-                            width: 130,
-                            height: 40,
-                            padding: const EdgeInsets.only(
-                                top: 4, right: 10),
+                            width: 100,
+                            height: 50,
+                            padding: const EdgeInsets.only(top: 8, right: 10),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.grey[300], // background
@@ -163,13 +162,13 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               onPressed: () {
                                 DatabaseService().addFilmIsWanted(details);
                               },
-                              child: Text('Посмотрю'),
+                              child: Icon(Icons.turned_in),
                             ),
                           ),
                           Container(
-                            width: 120,
-                            height: 40,
-                            padding: const EdgeInsets.only(top: 4, right: 14),
+                            width: 100,
+                            height: 50,
+                            padding: const EdgeInsets.only(top: 8, right: 14),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.grey[300], // background
@@ -178,9 +177,23 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               onPressed: () {
                                 DatabaseService().addFilmIsLiked(details);
                               },
-                              child: Text('Любимое'),
+                              child: Icon(Icons.favorite_rounded),
                             ),
                           ),
+                          Container(
+                              width: 70,
+                              height: 50,
+                              padding: const EdgeInsets.only(top: 8, right: 14),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.grey[300], // background
+                                  onPrimary: Colors.grey[700], // foreground
+                                ),
+                                onPressed: () {
+                                  DatabaseService().deleteFilm(details);
+                                },
+                                child: Icon(Icons.delete_rounded),
+                              )),
                         ],
                       ),
                       Container(

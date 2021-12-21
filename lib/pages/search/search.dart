@@ -29,7 +29,7 @@ class _SearchPage extends State<SearchPage> {
               height: 60,
               child: TextField(
                 onSubmitted: (text){
-                  x = text;
+                  final ValueChanged<String> text;
                 },
                 cursorColor: Colors.black,
                   style: TextStyle(
@@ -47,7 +47,6 @@ class _SearchPage extends State<SearchPage> {
                   )
                 ),
               ),
-              
             ),
           ),
           Container(

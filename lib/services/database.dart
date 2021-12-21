@@ -43,5 +43,9 @@ class DatabaseService{
 
     return await _filmDetailsCollection.doc((detailsFilm.kinopoiskId).toString()).set(map);
   }
-  
+
+  Future deleteFilm(DetailsFilm detailsFilm) async{
+
+    return await _filmDetailsCollection.doc((detailsFilm.kinopoiskId).toString()).delete();
+  }
 }
