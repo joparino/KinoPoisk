@@ -37,9 +37,9 @@ class DatabaseService{
     Map<String, dynamic> map = HashMap();
     map.addAll({'kinopoiskId': detailsFilm.kinopoiskId});
     map.addAll({'posterUrlPreview': detailsFilm.posterUrlPreview});
-    map.addAll({'isWatched': false});
-    map.addAll({'isWanted': true});
-    map.addAll({'isLiked': false});
+    map.addAll({'isWatched': true});
+    map.addAll({'isWanted': false});
+    map.addAll({'isLiked': true});
 
     return await _filmDetailsCollection.doc((detailsFilm.kinopoiskId).toString()).set(map);
   }

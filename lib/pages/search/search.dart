@@ -3,6 +3,7 @@ import 'package:flok/components/constants.dart';
 import 'package:flok/components/seacrhed_list.dart';
 import 'package:flok/components/scroll_list.dart';
 import 'package:flok/model/searched_film.dart';
+import 'package:flok/pages/profile/grid_view.dart';
 import 'package:flok/request/request.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +17,15 @@ class SearchPage extends StatefulWidget {
 class _SearchPage extends State<SearchPage> {
   String x = '';
   bool isTexting = true;
-  TextEditingController _textController = new TextEditingController();
+  late Future<FilmSearched> myFuture;
   @override
+  void initState() {
+    super.initState();
+    if (isTexting = false) {
+      myFuture = FilmsApi.getSearchFilm(x);
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -25,64 +33,59 @@ class _SearchPage extends State<SearchPage> {
           Center(
             child: Container(
               margin: EdgeInsets.only(top: 56),
-              width: MediaQuery.of(context).size.width-15,
+              width: MediaQuery.of(context).size.width - 15,
               height: 60,
               child: TextField(
-                onSubmitted: (text){
-                  final ValueChanged<String> text;
+                onSubmitted: (text) {
+                  x = text;
+                  isTexting = false;
                 },
                 cursorColor: Colors.black,
-                  style: TextStyle(
-                    color: Colors.black
-                  ),
+                style: TextStyle(color: Colors.black),
                 decoration: InputDecoration(
-                  hintStyle: TextStyle(color: Colors.grey[540]),
-                  hintText: "Фильмы, сериалы",
-                  icon: Icon(Icons.search),
-                  filled: true,
-                  fillColor: Colors.grey[300],
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(12)
-                  )
-                ),
+                    hintStyle: TextStyle(color: Colors.grey[540]),
+                    hintText: "Фильмы, сериалы",
+                    icon: Icon(Icons.search),
+                    filled: true,
+                    fillColor: Colors.grey[300],
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(12))),
               ),
             ),
           ),
-          Container(
-              width: MediaQuery.of(context).size.width,
-              height: cheight,
+          Expanded(
+            child: Container(
               child: FutureBuilder<FilmSearched>(
-                future: FilmsApi.getSearchFilm(x),
-                builder: (context, snapshot)
-                {
-                  // if(isTexting = false)
-                  // {
-                  //   if(!snapshot.hasData)
-                  //   {
-                  //     return const Center(child: CircularProgressIndicator());
-                  //   }
-                  // }
-                  if(!snapshot.hasData)
-                    {
+                  future: FilmsApi.getSearchFilm(x),
+                  builder: (context, snapshot) {
+                    
+                    if (!snapshot.hasData) {
                       return const Center(child: CircularProgressIndicator());
                     }
-
-                  final search = snapshot.data;
-
-                  return ListView.builder(
-                    itemCount: search == null ? 0 : search.films.length,
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index)
-                    {
-                      final film = search!.films[index];
-                      return ListSearched(film: film, heigth: cheight, width: cwidth);
-                    }
-                  );
-                }
-              ),
+          
+                    final search = snapshot.data;
+          
+                    return SizedBox(
+                      child: GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            mainAxisExtent: cheight - 40,
+                            crossAxisCount: 2,
+                          ),
+                          shrinkWrap: true,
+                          itemCount: search == null ? 0 : search.films.length,
+                          itemBuilder: (context, index) {
+                            final film = search!.films[index];
+                            return ListSearched(
+                                film: film,
+                                heigth: cheight - 40,
+                                width: cwidth - 20);
+                          }),
+                    );
+                  }),
             ),
+          ),
         ],
       ),
       bottomNavigationBar: bottomNavigation(),

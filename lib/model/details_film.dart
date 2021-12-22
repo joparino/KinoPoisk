@@ -8,7 +8,6 @@ class DetailsFilm {
         required this.ratingKinopoisk,
         required this.ratingImdb,
         required this.ratingFilmCritics,
-        required this.webUrl,
         required this.year,
         required this.filmLength,
         required this.slogan,
@@ -27,7 +26,6 @@ class DetailsFilm {
     double ratingKinopoisk;
     double ratingImdb;
     double ratingFilmCritics;
-    String webUrl;
     int year;
     int filmLength;
     String slogan;
@@ -39,14 +37,13 @@ class DetailsFilm {
 
     factory DetailsFilm.fromJson(Map<String, dynamic> json) => DetailsFilm(
         kinopoiskId: json["kinopoiskId"],
-        nameRu: json["nameRu"],
+        nameRu: json["nameRu"] ?? '',
         nameOriginal: json["nameOriginal"] ?? '',
         posterUrl: json["posterUrl"],
         posterUrlPreview: json["posterUrlPreview"],
         ratingKinopoisk: json["ratingKinopoisk"] ?? 0.0,
         ratingImdb: json["ratingImdb"] ?? 0.0,
         ratingFilmCritics: json["ratingFilmCritics"] ?? 0.0,
-        webUrl: json["webUrl"],
         year: json["year"],
         filmLength: json["filmLength"] ?? 0,
         slogan: json["slogan"] ?? '',
@@ -66,7 +63,6 @@ class DetailsFilm {
         "ratingKinopoisk": ratingKinopoisk,
         "ratingImdb": ratingImdb,
         "ratingFilmCritics": ratingFilmCritics,
-        "webUrl": webUrl,
         "year": year,
         "filmLength": filmLength,
         "slogan": slogan,
