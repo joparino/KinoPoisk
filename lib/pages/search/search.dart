@@ -2,7 +2,9 @@ import 'package:flok/components/bottom_navigation.dart';
 import 'package:flok/components/constants.dart';
 import 'package:flok/components/seacrhed_list.dart';
 import 'package:flok/components/scroll_list.dart';
+import 'package:flok/main.dart';
 import 'package:flok/model/searched_film.dart';
+import 'package:flok/model/top_film.dart';
 import 'package:flok/pages/profile/grid_view.dart';
 import 'package:flok/request/request.dart';
 import 'package:flutter/material.dart';
@@ -15,16 +17,10 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPage extends State<SearchPage> {
-  String x = '';
+  String x = ' ';
   bool isTexting = true;
-  late Future<FilmSearched> myFuture;
+  Future<FilmSearched>? myFuture;
   @override
-  void initState() {
-    super.initState();
-    if (isTexting = false) {
-      myFuture = FilmsApi.getSearchFilm(x);
-    }
-  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +35,9 @@ class _SearchPage extends State<SearchPage> {
                 onSubmitted: (text) {
                   x = text;
                   isTexting = false;
+                  setState(() {
+                    myFuture = FilmsApi.getSearchFilm(text);
+                  });
                 },
                 cursorColor: Colors.black,
                 style: TextStyle(color: Colors.black),
@@ -57,15 +56,14 @@ class _SearchPage extends State<SearchPage> {
           Expanded(
             child: Container(
               child: FutureBuilder<FilmSearched>(
-                  future: FilmsApi.getSearchFilm(x),
+                  future: myFuture,
                   builder: (context, snapshot) {
-                    
                     if (!snapshot.hasData) {
                       return const Center(child: CircularProgressIndicator());
                     }
-          
+
                     final search = snapshot.data;
-          
+
                     return SizedBox(
                       child: GridView.builder(
                           gridDelegate:
@@ -84,6 +82,7 @@ class _SearchPage extends State<SearchPage> {
                           }),
                     );
                   }),
+                  
             ),
           ),
         ],
