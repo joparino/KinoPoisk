@@ -94,22 +94,3 @@ class FilmsApi{
     return searchedFilm;
   }
 }
-
-main () async{
-  String name = "Eвангелион";
-  Uri url = Uri.parse('https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=$name');
-    Map<String, String> headers = HashMap();
-    headers.addAll({'X-API-KEY': 'c02232f2-6940-45e2-be79-bc333cac1da7'});
-    headers.addAll({'content-type': 'application/json'});
-    headers.addAll({'Charset': 'utf-8'});
-
-    final response = await http.get(
-      url,
-      headers: headers,
-    );
-    final responseText = utf8.decode(response.bodyBytes);
-    final x = json.decode(responseText);
-    //print(x);\
-    FilmSearched searchedFilm = FilmSearched.fromJson(x);
-    print(searchedFilm.films[0].description);
-}
