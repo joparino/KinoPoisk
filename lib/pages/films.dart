@@ -16,7 +16,7 @@ class FilmsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: const EdgeInsets.only(top: 34, left: 14),
+              margin: const EdgeInsets.only(top: 42, left: 14),
               child: const Text('Фильмы и сериалы',
               style: TextStyle(fontSize: 28),
               ),
