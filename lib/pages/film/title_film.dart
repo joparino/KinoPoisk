@@ -12,8 +12,8 @@ class title extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(left: 0, right: 0, top: 30),
-              child: Text('$Title',
+            margin: const EdgeInsets.only(left: 0, right: 0, top: 30),
+              child: Text(Title,
               style: TextStyle(color: Colors.blueGrey[600],
               fontSize: 26,
               ),

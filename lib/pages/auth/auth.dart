@@ -11,14 +11,14 @@ class Authorization extends StatefulWidget {
 }
 
 class _Authorization extends State<Authorization> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   late String _email;
   late String _password;
   bool ShowLogin = true;
 
-  AuthService _authService = AuthService();
+  final AuthService _authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -81,24 +81,24 @@ class _Authorization extends State<Authorization> {
 
     Widget _text(Icon icon, String hint, TextEditingController controller, bool obsecure){
       return Container(
-        padding: EdgeInsets.only(left: 20, right: 20),
+        padding: const EdgeInsets.only(left: 20, right: 20),
         child: TextField(
           controller: controller,
           obscureText: obsecure,
-          style: TextStyle(fontSize: 20),
+          style: const TextStyle(fontSize: 20),
           decoration: InputDecoration(
-            hintStyle: TextStyle(fontSize: 20),
+            hintStyle: const TextStyle(fontSize: 20),
             hintText: hint,
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 2)
             ),
-            enabledBorder: OutlineInputBorder(
+            enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey, width: 2)
             ),
             prefixIcon: Padding(
-              padding: EdgeInsets.only(left: 10, right: 10),
+              padding: const EdgeInsets.only(left: 10, right: 10),
               child:  IconTheme(
-                data: IconThemeData(color: Colors.black),
+                data: const IconThemeData(color: Colors.black),
                 child: icon,
               ),
             )
@@ -107,21 +107,26 @@ class _Authorization extends State<Authorization> {
       );
     }
     
-    Widget _field(String label, void func()){
+    Widget _field(String label, void Function() func){
       return Container(
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(bottom: 20, top: 20),
-              child: _text(Icon(Icons.login), 'Электронная почта', _emailController, false),
+              padding: const EdgeInsets.only(bottom: 20, top: 20),
+              child: _text(const Icon(Icons.login), 'Электронная почта', _emailController, false),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 20, top: 20),
+              padding: const EdgeInsets.only(bottom: 1, top: 20),
               child: _text(Icon(Icons.lock), 'Пароль', _passwordController, true),
             ),
-            SizedBox(height: 18),
+            Container(
+              alignment: AlignmentDirectional.topStart,
+              padding: const EdgeInsets.only(bottom: 5, top: 1, left: 28),
+              child: const Text('Минимальная длина пароля 6 символов', style: TextStyle(fontSize: 13))
+            ),
+            const SizedBox(height: 20),
             Padding(
-              padding: EdgeInsets.only(left: 20, right: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Container(
                 height: 60,
                 width: MediaQuery.of(context).size.width,
@@ -131,7 +136,7 @@ class _Authorization extends State<Authorization> {
                     onPrimary: Colors.grey[700], // foreground
                   ),
                   child: Text(label,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   onPressed:(){
                     func();
@@ -149,23 +154,23 @@ class _Authorization extends State<Authorization> {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(top: 150),
-            child: Align(
+            padding: const EdgeInsets.only(top: 150),
+            child: const Align(
               child: Text('КиноПоиск',
               style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
               ),
             ),
           ),
-          SizedBox(height: 100),
+          const SizedBox(height: 100),
           (
             ShowLogin
             ? Column(
               children: [
                 _field('Войти', _loginUser),
                 Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: GestureDetector(
-                    child: Text('Не зарегистрированы? Зарегистрируйтесь!'),
+                    child: const Text('Не зарегистрированы? Зарегистрируйтесь!'),
                     onTap:(){
                       setState((){
                         ShowLogin = false;
@@ -179,9 +184,9 @@ class _Authorization extends State<Authorization> {
               children: [
                 _field('Зарегистрироваться', _registerUser),
                 Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: GestureDetector(
-                    child: Text('Уже зарегистрированы? Войдите!'),
+                    child: const Text('Уже зарегистрированы? Войдите!'),
                     onTap:(){
                       setState((){
                         ShowLogin = true;

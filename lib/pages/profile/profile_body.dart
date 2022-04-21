@@ -1,11 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flok/pages/profile/grid_view.dart';
 import 'package:flok/services/user.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class MainWindow extends StatefulWidget {
   const MainWindow({Key? key}) : super(key: key);
@@ -37,7 +35,7 @@ class _MainWindowState extends State<MainWindow> {
         children: <Widget>[
           Container(
             constraints: BoxConstraints.expand(height: 40),
-            child: TabBar(tabs: [
+            child: const TabBar(tabs: [
               Tab(text: "Просмотрено"),
               Tab(text: "Желаемое"),
               Tab(text: "Любимое"),
@@ -47,7 +45,7 @@ class _MainWindowState extends State<MainWindow> {
             child: Container(
               child: TabBarView(children: [
                 Container(
-                  margin: EdgeInsets.only(top: 10, right: 8, left: 8),
+                  margin: const EdgeInsets.only(top: 10, right: 8, left: 8),
                   child: Column(
                     children: [
                       StreamBuilder<QuerySnapshot>(
@@ -56,13 +54,13 @@ class _MainWindowState extends State<MainWindow> {
                               AsyncSnapshot<QuerySnapshot> snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return Text('Loading');
+                              return const Text('Loading');
                             }
                             if (snapshot.data!.docs.isEmpty == true) {
                               return Container(
-                                  padding: EdgeInsets.only(top: 250),
+                                  padding: const EdgeInsets.only(top: 250),
                                   width: 200,
-                                  child: AutoSizeText(
+                                  child: const AutoSizeText(
                                     "Упс! Кажется тут ничего нет \n\t добавьте фильм в список!",
                                     style: TextStyle(fontSize: 14),
                                     overflow: TextOverflow.ellipsis,
@@ -74,7 +72,7 @@ class _MainWindowState extends State<MainWindow> {
                                 height: 200.0,
                                 child: GridView(
                                   gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
                                     mainAxisExtent: 250,
                                     mainAxisSpacing: 10,
                                     crossAxisCount: 2,
@@ -95,7 +93,7 @@ class _MainWindowState extends State<MainWindow> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 10, right: 8, left: 8),
+                  margin: const EdgeInsets.only(top: 10, right: 8, left: 8),
                   child: Column(
                     children: [
                       StreamBuilder<QuerySnapshot>(
@@ -104,13 +102,13 @@ class _MainWindowState extends State<MainWindow> {
                               AsyncSnapshot<QuerySnapshot> snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return Text('Loading');
+                              return const Text('Loading');
                             }
                             if (snapshot.data!.docs.isEmpty == true) {
                               return Container(
-                                  padding: EdgeInsets.only(top: 250),
+                                  padding: const EdgeInsets.only(top: 250),
                                   width: 200,
-                                  child: AutoSizeText(
+                                  child: const AutoSizeText(
                                     "Упс! Кажется тут ничего нет \n\t добавьте фильм в список!",
                                     style: TextStyle(fontSize: 14),
                                     overflow: TextOverflow.ellipsis,
@@ -122,7 +120,7 @@ class _MainWindowState extends State<MainWindow> {
                                 height: 200.0,
                                 child: GridView(
                                   gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
                                     mainAxisExtent: 250,
                                     mainAxisSpacing: 10,
                                     crossAxisCount: 2,
@@ -143,7 +141,7 @@ class _MainWindowState extends State<MainWindow> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 10, right: 8, left: 8),
+                  margin: const EdgeInsets.only(top: 10, right: 8, left: 8),
                   child: Column(
                     children: [
                       StreamBuilder<QuerySnapshot>(
@@ -152,13 +150,13 @@ class _MainWindowState extends State<MainWindow> {
                               AsyncSnapshot<QuerySnapshot> snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return Text('Loading');
+                              return const Text('Loading');
                             }
                             if (snapshot.data!.docs.isEmpty == true) {
                               return Container(
-                                  padding: EdgeInsets.only(top: 250),
+                                  padding: const EdgeInsets.only(top: 250),
                                   width: 200,
-                                  child: AutoSizeText(
+                                  child: const AutoSizeText(
                                     "Упс! Кажется тут ничего нет \n\t добавьте фильм в список!",
                                     style: TextStyle(fontSize: 14),
                                     overflow: TextOverflow.ellipsis,
@@ -170,7 +168,7 @@ class _MainWindowState extends State<MainWindow> {
                                 height: 200.0,
                                 child: GridView(
                                   gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
                                     mainAxisExtent: 250,
                                     mainAxisSpacing: 10,
                                     crossAxisCount: 2,

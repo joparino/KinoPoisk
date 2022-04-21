@@ -1,6 +1,5 @@
 import 'package:flok/main.dart';
 import 'package:flok/pages/films.dart';
-import 'package:flok/pages/profile/profile_body.dart';
 import 'package:flok/pages/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,7 +12,7 @@ class bottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 20,right: 20),
+      padding: const EdgeInsets.only(left: 20,right: 20),
       height: 80,
       color: Colors.white,
       child: Row(
@@ -22,7 +21,7 @@ class bottomNavigation extends StatelessWidget {
           IconButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(
-                builder: (context)=> HomePage(),
+                builder: (context)=> const HomePage(),
                 ),
               );
             },
@@ -31,7 +30,7 @@ class bottomNavigation extends StatelessWidget {
             IconButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(
-                builder: (context)=> FilmsPage(),
+                builder: (context)=> const FilmsPage(),
                 ),
               );
             },

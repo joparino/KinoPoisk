@@ -1,5 +1,4 @@
 import 'package:flok/model/searched_film.dart';
-import 'package:flok/model/top_film.dart';
 import 'package:flok/pages/details/description.dart';
 import 'package:flutter/material.dart';
 

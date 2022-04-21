@@ -19,7 +19,7 @@ class GridWidget extends StatelessWidget {
             ));
           },
           child: Container(
-            margin: EdgeInsets.only(bottom: 2),
+            margin: const EdgeInsets.only(bottom: 2),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(25.0),
               child: Image.network(

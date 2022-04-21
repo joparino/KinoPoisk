@@ -18,7 +18,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
         ),
         shadowColor: Colors.white,
@@ -76,12 +76,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
-                        padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                        padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
                         child: SizedBox(
                             width: 370,
                             child: AutoSizeText(
                               details.nameRu,
-                              style: TextStyle(fontSize: 28),
+                              style: const TextStyle(fontSize: 28),
                               stepGranularity: 2,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -106,23 +106,23 @@ class _DescriptionPageState extends State<DescriptionPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                margin: EdgeInsets.only(top: 34, left: 12),
+                                margin: const EdgeInsets.only(top: 34, left: 12),
                                 child: Text('Год: ' + details.year.toString()),
                               ),
                               Container(
-                                margin: EdgeInsets.only(top: 20, left: 12),
+                                margin: const EdgeInsets.only(top: 20, left: 12),
                                 child: Text(
                                     'Время: ' + details.filmLength.toString()),
                               ),
                               Container(
-                                margin: EdgeInsets.only(top: 20, left: 12),
+                                margin: const EdgeInsets.only(top: 20, left: 12),
                                 child: SizedBox(
                                     width: 178,
                                     height: 50,
                                     child: getTextGenres(listGenre)),
                               ),
                               Container(
-                                margin: EdgeInsets.only(top: 20, left: 12),
+                                margin: const EdgeInsets.only(top: 20, left: 12),
                                 child: SizedBox(
                                     width: 178,
                                     height: 50,
@@ -147,7 +147,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               onPressed: () {
                                 DatabaseService().addFilmIsWatched(details);
                               },
-                              child: Icon(Icons.check_circle_rounded),
+                              child: const Icon(Icons.check_circle_rounded),
                             ),
                           ),
                           Container(
@@ -162,7 +162,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               onPressed: () {
                                 DatabaseService().addFilmIsWanted(details);
                               },
-                              child: Icon(Icons.turned_in),
+                              child: const Icon(Icons.turned_in),
                             ),
                           ),
                           Container(
@@ -177,7 +177,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               onPressed: () {
                                 DatabaseService().addFilmIsLiked(details);
                               },
-                              child: Icon(Icons.favorite_rounded),
+                              child: const Icon(Icons.favorite_rounded),
                             ),
                           ),
                           Container(
@@ -192,17 +192,17 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                 onPressed: () {
                                   DatabaseService().deleteFilm(details);
                                 },
-                                child: Icon(Icons.delete_rounded),
+                                child: const Icon(Icons.delete_rounded),
                               )),
                         ],
                       ),
                       Container(
                         height: 240,
                         width: MediaQuery.of(context).size.width,
-                        padding: EdgeInsets.only(top: 12, left: 10, right: 10),
+                        padding: const EdgeInsets.only(top: 12, left: 10, right: 10),
                         child: AutoSizeText(
                           details.description,
-                          style: TextStyle(fontSize: 24),
+                          style: const TextStyle(fontSize: 24),
                           stepGranularity: 4,
                           maxLines: 16,
                           overflow: TextOverflow.ellipsis,

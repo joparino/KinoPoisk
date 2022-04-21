@@ -14,7 +14,6 @@ class FilmsApi{
     Map<String, String> headers = HashMap();
     headers.addAll({'X-API-KEY': 'c02232f2-6940-45e2-be79-bc333cac1da7'});
     headers.addAll({'content-type': 'application/json'});
-    headers.addAll({'Charset': 'utf-8'});
 
     final response = await http.get(
       url,
@@ -30,7 +29,6 @@ class FilmsApi{
     Map<String, String> headers = HashMap();
     headers.addAll({'X-API-KEY': 'c02232f2-6940-45e2-be79-bc333cac1da7'});
     headers.addAll({'content-type': 'application/json'});
-    headers.addAll({'Charset': 'utf-8'});
 
     final response = await http.get(
       url,
@@ -46,7 +44,6 @@ class FilmsApi{
     Map<String, String> headers = HashMap();
     headers.addAll({'X-API-KEY': 'c02232f2-6940-45e2-be79-bc333cac1da7'});
     headers.addAll({'content-type': 'application/json'});
-    headers.addAll({'Charset': 'utf-8'});
 
     final response = await http.get(
       url,
@@ -62,7 +59,6 @@ class FilmsApi{
     Map<String, String> headers = HashMap();
     headers.addAll({'X-API-KEY': 'c02232f2-6940-45e2-be79-bc333cac1da7'});
     headers.addAll({'content-type': 'application/json'});
-    headers.addAll({'Charset': 'utf-8'});
 
     final response = await http.get(
       url,
@@ -79,15 +75,12 @@ class FilmsApi{
     Map<String, String> headers = HashMap();
     headers.addAll({'X-API-KEY': 'c02232f2-6940-45e2-be79-bc333cac1da7'});
     headers.addAll({'content-type': 'application/json'});
-    headers.addAll({'Charset': 'utf-8'});
 
     final response = await http.get(
       url,
       headers: headers,
     );
     final responseText = utf8.decode(response.bodyBytes);
-    print(response.statusCode);
-    print(responseText);
     final x = json.decode(responseText);
 
     FilmSearched searchedFilm = FilmSearched.fromJson(x);

@@ -3,9 +3,6 @@ import 'dart:collection';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flok/model/details_film.dart';
-import 'package:flok/services/auth.dart';
-import 'package:flok/services/user.dart';
-import 'package:provider/provider.dart';
 
 class DatabaseService{
   static User? user = FirebaseAuth.instance.currentUser;
@@ -45,7 +42,6 @@ class DatabaseService{
   }
 
   Future deleteFilm(DetailsFilm detailsFilm) async{
-
     return await _filmDetailsCollection.doc((detailsFilm.kinopoiskId).toString()).delete();
   }
 }

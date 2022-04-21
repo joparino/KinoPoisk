@@ -124,7 +124,7 @@ class FilmsPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: bottomNavigation(),
+      bottomNavigationBar: const bottomNavigation(),
     );
   }
 }

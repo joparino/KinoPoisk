@@ -1,12 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flok/pages/auth/auth.dart';
 import 'package:flok/pages/auth/landing.dart';
 import 'package:flok/pages/profile/profile_body.dart';
 import 'package:flok/components/bottom_navigation.dart';
 import 'package:flok/services/auth.dart';
 import 'package:flok/services/user.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 main() async {
@@ -16,6 +14,8 @@ main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return StreamProvider<AuthUser?>.value(
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.white,
           brightness: Brightness.light,
         ),
-        home: Landind(),
+        home: const Landind(),
       ),
     );
   }
@@ -40,8 +40,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: MainWindow(),
-      bottomNavigationBar: bottomNavigation(),
+      body: const MainWindow(),
+      bottomNavigationBar: const bottomNavigation(),
     );
   }
 
@@ -55,8 +55,8 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               AuthService().logOut();
             },
-            icon: Icon(Icons.logout, color: Colors.black),
-            label: SizedBox.shrink())
+            icon: const Icon(Icons.logout, color: Colors.black),
+            label: const SizedBox.shrink())
       ],
     );
   }

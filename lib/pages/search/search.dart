@@ -1,16 +1,12 @@
 import 'package:flok/components/bottom_navigation.dart';
 import 'package:flok/components/constants.dart';
 import 'package:flok/components/seacrhed_list.dart';
-import 'package:flok/components/scroll_list.dart';
-import 'package:flok/main.dart';
 import 'package:flok/model/searched_film.dart';
-import 'package:flok/model/top_film.dart';
-import 'package:flok/pages/profile/grid_view.dart';
 import 'package:flok/request/request.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
-  SearchPage({Key? key}) : super(key: key);
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
   _SearchPage createState() => _SearchPage();
@@ -21,14 +17,13 @@ class _SearchPage extends State<SearchPage> {
   bool isTexting = true;
   Future<FilmSearched>? myFuture;
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
           Center(
             child: Container(
-              margin: EdgeInsets.only(top: 56),
+              margin: const EdgeInsets.only(top: 56),
               width: MediaQuery.of(context).size.width - 15,
               height: 60,
               child: TextField(
@@ -40,11 +35,11 @@ class _SearchPage extends State<SearchPage> {
                   });
                 },
                 cursorColor: Colors.black,
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.grey[540]),
                     hintText: "Фильмы, сериалы",
-                    icon: Icon(Icons.search),
+                    icon: const Icon(Icons.search),
                     filled: true,
                     fillColor: Colors.grey[300],
                     border: OutlineInputBorder(
@@ -82,12 +77,11 @@ class _SearchPage extends State<SearchPage> {
                           }),
                     );
                   }),
-                  
             ),
           ),
         ],
       ),
-      bottomNavigationBar: bottomNavigation(),
+      bottomNavigationBar: const bottomNavigation(),
     );
   }
 }
