@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(),
       body: const MainWindow(),
-      bottomNavigationBar: const bottomNavigation(),
+      bottomNavigationBar: const BottomNavigation(),
     );
   }
 

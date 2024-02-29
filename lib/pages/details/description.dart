@@ -141,8 +141,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                 left: 14, top: 8, right: 10),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.grey[300], // background
-                                onPrimary: Colors.grey[700], // foreground
+                                foregroundColor: Colors.grey[700], backgroundColor: Colors.grey[300], // foreground
                               ),
                               onPressed: () {
                                 DatabaseService().addFilmIsWatched(details);
@@ -156,8 +155,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                             padding: const EdgeInsets.only(top: 8, right: 10),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.grey[300], // background
-                                onPrimary: Colors.grey[700], // foreground
+                                foregroundColor: Colors.grey[700], backgroundColor: Colors.grey[300], // foreground
                               ),
                               onPressed: () {
                                 DatabaseService().addFilmIsWanted(details);
@@ -171,8 +169,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                             padding: const EdgeInsets.only(top: 8, right: 14),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.grey[300], // background
-                                onPrimary: Colors.grey[700], // foreground
+                                foregroundColor: Colors.grey[700], backgroundColor: Colors.grey[300], // foreground
                               ),
                               onPressed: () {
                                 DatabaseService().addFilmIsLiked(details);
@@ -186,8 +183,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               padding: const EdgeInsets.only(top: 8, right: 14),
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: Colors.grey[300], // background
-                                  onPrimary: Colors.grey[700], // foreground
+                                  foregroundColor: Colors.grey[700], backgroundColor: Colors.grey[300], // foreground
                                 ),
                                 onPressed: () {
                                   DatabaseService().deleteFilm(details);

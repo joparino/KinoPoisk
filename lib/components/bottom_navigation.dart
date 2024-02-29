@@ -4,8 +4,8 @@ import 'package:flok/pages/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class bottomNavigation extends StatelessWidget {
-  const bottomNavigation({
+class BottomNavigation extends StatelessWidget {
+  const BottomNavigation({
     Key? key,
   }) : super(key: key);
 
@@ -39,7 +39,7 @@ class bottomNavigation extends StatelessWidget {
             IconButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(
-                builder: (context)=> SearchPage(),
+                builder: (context)=> const SearchPage(),
                 ),
               );
             },

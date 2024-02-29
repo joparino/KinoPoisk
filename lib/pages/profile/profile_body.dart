@@ -34,7 +34,7 @@ class _MainWindowState extends State<MainWindow> {
       child: Column(
         children: <Widget>[
           Container(
-            constraints: BoxConstraints.expand(height: 40),
+            constraints: const BoxConstraints.expand(height: 40),
             child: const TabBar(tabs: [
               Tab(text: "Просмотрено"),
               Tab(text: "Желаемое"),

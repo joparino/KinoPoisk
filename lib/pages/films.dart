@@ -27,7 +27,7 @@ class FilmsPage extends StatelessWidget {
               style: TextStyle(fontSize: 24),
               ),
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               height: cheight-20,
               child: FutureBuilder<List<Film>>(
@@ -61,7 +61,7 @@ class FilmsPage extends StatelessWidget {
               style: TextStyle(fontSize: 24),
               ),
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               height:  cheight-60,
               child: FutureBuilder<List<Film>>(
@@ -94,7 +94,7 @@ class FilmsPage extends StatelessWidget {
               style: TextStyle(fontSize: 24),
               ),
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               height: cheight-50,
               child: FutureBuilder<List<Film>>(
@@ -124,7 +124,7 @@ class FilmsPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const bottomNavigation(),
+      bottomNavigationBar: const BottomNavigation(),
     );
   }
 }

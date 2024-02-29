@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Authorization extends StatefulWidget {
-  Authorization({Key? key}) : super(key: key);
+  const Authorization({Key? key}) : super(key: key);
 
   @override
   _Authorization createState() => _Authorization();
@@ -117,7 +117,7 @@ class _Authorization extends State<Authorization> {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 1, top: 20),
-              child: _text(Icon(Icons.lock), 'Пароль', _passwordController, true),
+              child: _text(const Icon(Icons.lock), 'Пароль', _passwordController, true),
             ),
             Container(
               alignment: AlignmentDirectional.topStart,
@@ -127,13 +127,12 @@ class _Authorization extends State<Authorization> {
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Container(
+              child: SizedBox(
                 height: 60,
                 width: MediaQuery.of(context).size.width,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.grey[300], // background
-                    onPrimary: Colors.grey[700], // foreground
+                    foregroundColor: Colors.grey[700], backgroundColor: Colors.grey[300], // foreground
                   ),
                   child: Text(label,
                   style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

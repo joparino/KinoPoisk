@@ -12,6 +12,6 @@ class Landind extends StatelessWidget {
     final AuthUser? user = Provider.of<AuthUser?>(context);
     final bool isLoggedIn = user !=null;
 
-    return isLoggedIn ? const HomePage() : Authorization();
+    return isLoggedIn ? const HomePage() : const Authorization();
   }
 }
