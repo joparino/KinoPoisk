@@ -1,18 +1,18 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flok/pages/profile/grid_view.dart';
+import 'package:flok/components/grid_view.dart';
 import 'package:flok/services/user.dart';
 import 'package:flutter/material.dart';
 
-class MainWindow extends StatefulWidget {
-  const MainWindow({Key? key}) : super(key: key);
+class UserPage extends StatefulWidget {
+  const UserPage({super.key});
 
   @override
-  State<MainWindow> createState() => _MainWindowState();
+  State<UserPage> createState() => _UserPage();
 }
 
-class _MainWindowState extends State<MainWindow> {
+class _UserPage extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;

@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Landind extends StatelessWidget {
-  const Landind({Key? key}) : super(key: key);
+  const Landind({super.key});
 
   @override
   Widget build(BuildContext context) {
     final AuthUser? user = Provider.of<AuthUser?>(context);
     final bool isLoggedIn = user !=null;
 
-    return isLoggedIn ? const HomePage() : const Authorization();
+    return isLoggedIn ? const MainWindow() : const Authorization();
   }
 }

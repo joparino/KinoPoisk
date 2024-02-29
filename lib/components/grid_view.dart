@@ -3,7 +3,7 @@ import 'package:flok/pages/details/description.dart';
 import 'package:flutter/material.dart';
 
 class GridWidget extends StatelessWidget {
-  const GridWidget({ Key? key, required this.film,required this.image}) : super(key: key);
+  const GridWidget({super.key, required this.film, required this.image});
 
   final int film;
   final String image;

@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flok/pages/auth/landing.dart';
-import 'package:flok/pages/profile/profile_body.dart';
-import 'package:flok/components/bottom_navigation.dart';
+import 'package:flok/pages/films.dart';
+import 'package:flok/pages/profile/user_page.dart';
+import 'package:flok/pages/search/search.dart';
 import 'package:flok/services/auth.dart';
 import 'package:flok/services/user.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +34,51 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+
+class MainWindow extends StatefulWidget{
+  const MainWindow({super.key});
+
+  @override
+  State<MainWindow> createState() => _MainWindow();
+}
+
+class _MainWindow extends State<MainWindow> {
+  int currentPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: const MainWindow(),
-      bottomNavigationBar: const BottomNavigation(),
+      bottomNavigationBar: buildNavigationBar(),
+      body: [const UserPage(), const FilmsPage(), const SearchPage()][currentPageIndex]
+    );
+  }
+
+  NavigationBar buildNavigationBar() {
+    return NavigationBar(
+      onDestinationSelected: (int index){
+        setState(() {
+          currentPageIndex = index;
+        });
+      },
+      indicatorColor: Colors.amber,
+      selectedIndex: currentPageIndex,
+      destinations: const <Widget>[
+        NavigationDestination(
+          selectedIcon: Icon(Icons.home),
+          icon: Icon(Icons.home_outlined), 
+          label: "Home"
+        ),
+        NavigationDestination(
+          selectedIcon: Icon(Icons.thumb_up),
+          icon: Icon(Icons.thumb_up_outlined), 
+          label: "Tops"
+        ),
+        NavigationDestination(
+          icon: Icon(Icons.search), 
+          label: "Search"
+        )  
+      ]
     );
   }
 

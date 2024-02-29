@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Authorization extends StatefulWidget {
-  const Authorization({Key? key}) : super(key: key);
+  const Authorization({super.key});
 
   @override
   State<Authorization> createState() => _Authorization();

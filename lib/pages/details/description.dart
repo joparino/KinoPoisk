@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 class DescriptionPage extends StatefulWidget {
   final int filmId;
-  const DescriptionPage(this.filmId, {Key? key}) : super(key: key);
+  const DescriptionPage(this.filmId, {super.key});
 
   @override
   State<DescriptionPage> createState() => _DescriptionPageState();

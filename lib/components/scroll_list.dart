@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 class ListFilm extends StatelessWidget {
   const ListFilm({
-    Key? key,
+    super.key,
     required this.film, required this.heigth, required this.width,
-  }) : super(key: key);
+  });
 
   final Film film;
   final double heigth;

@@ -1,4 +1,3 @@
-import 'package:flok/components/bottom_navigation.dart';
 import 'package:flok/components/constants.dart';
 import 'package:flok/components/scroll_list.dart';
 import 'package:flok/model/top_film.dart';
@@ -6,7 +5,7 @@ import 'package:flok/request/request.dart';
 import 'package:flutter/material.dart';
 
 class FilmsPage extends StatelessWidget {
-  const FilmsPage({Key? key}) : super(key: key);
+  const FilmsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +123,6 @@ class FilmsPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavigation(),
     );
   }
 }

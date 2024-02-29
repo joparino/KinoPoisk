@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flok/model/details_film.dart';
@@ -10,33 +8,29 @@ class DatabaseService{
 
 
   Future addFilmIsWatched(DetailsFilm detailsFilm) async{
-    Map<String, dynamic> map = HashMap();
-    map.addAll({'kinopoiskId': detailsFilm.kinopoiskId});
-    map.addAll({'posterUrlPreview': detailsFilm.posterUrlPreview});
-    map.addAll({'isWatched': true});
-    map.addAll({'isWanted': false});
+    Map<String, dynamic> map = {'kinopoiskId': detailsFilm.kinopoiskId, 
+                                'posterUrlPreview': detailsFilm.posterUrlPreview, 
+                                'isWatched': true, 
+                                'isWanted': false};
 
     return await _filmDetailsCollection.doc((detailsFilm.kinopoiskId).toString()).set(map);
   }
 
   Future addFilmIsWanted(DetailsFilm detailsFilm) async{
-    Map<String, dynamic> map = HashMap();
-    map.addAll({'kinopoiskId': detailsFilm.kinopoiskId});
-    map.addAll({'posterUrlPreview': detailsFilm.posterUrlPreview});
-    map.addAll({'isWatched': false});
-    map.addAll({'isWanted': true});
-    map.addAll({'isLiked': false});
+    Map<String, dynamic> map = {'kinopoiskId': detailsFilm.kinopoiskId, 
+                                'posterUrlPreview': detailsFilm.posterUrlPreview, 
+                                'isWatched': false, 
+                                'isWanted': true, 
+                                'isLiked': false};
 
     return await _filmDetailsCollection.doc((detailsFilm.kinopoiskId).toString()).set(map);
   }
 
   Future addFilmIsLiked(DetailsFilm detailsFilm) async{
-    Map<String, dynamic> map = HashMap();
-    map.addAll({'kinopoiskId': detailsFilm.kinopoiskId});
-    map.addAll({'posterUrlPreview': detailsFilm.posterUrlPreview});
-    map.addAll({'isWatched': true});
-    map.addAll({'isWanted': false});
-    map.addAll({'isLiked': true});
+    Map<String, dynamic> map = {'kinopoiskId': detailsFilm.kinopoiskId, 
+                                'posterUrlPreview': detailsFilm.posterUrlPreview, 
+                                'isWatched': true, 
+                                'isLiked': true};
 
     return await _filmDetailsCollection.doc((detailsFilm.kinopoiskId).toString()).set(map);
   }

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 class ListSearched extends StatelessWidget {
   const ListSearched({
-    Key? key,
+    super.key,
     required this.film, required this.heigth, required this.width,
-  }) : super(key: key);
+  });
 
   final FilmS film;
   final double heigth;
