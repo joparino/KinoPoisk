@@ -7,32 +7,32 @@ class Authorization extends StatefulWidget {
   const Authorization({Key? key}) : super(key: key);
 
   @override
-  _Authorization createState() => _Authorization();
+  State<Authorization> createState() => _Authorization();
 }
 
 class _Authorization extends State<Authorization> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
-  late String _email;
-  late String _password;
-  bool ShowLogin = true;
+  late String email;
+  late String password;
+  bool showLogin = true;
 
-  final AuthService _authService = AuthService();
+  final AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
 
-    void _loginUser() async{
-      _email = _emailController.text;
-      _password = _passwordController.text;
+    void loginUser() async{
+      email = emailController.text;
+      password = passwordController.text;
 
-      if(_email.isEmpty || _password.isEmpty)
+      if(email.isEmpty || password.isEmpty)
       {
         return;
       }
 
-      AuthUser? user = await _authService.signInWithEmailAndPassword(_email.trim(), _password.trim());
+      AuthUser? user = await authService.signInWithEmailAndPassword(email.trim(), password.trim());
       if(user == null)
       {
         Fluttertoast.showToast(
@@ -46,21 +46,21 @@ class _Authorization extends State<Authorization> {
       }
       else
       {
-        _emailController.clear();
-        _passwordController.clear();
+        emailController.clear();
+        passwordController.clear();
       }
     }
     
-    void _registerUser() async{
-      _email = _emailController.text;
-      _password = _passwordController.text;
+    void registerUser() async{
+      email = emailController.text;
+      password = passwordController.text;
 
-      if(_email.isEmpty || _password.isEmpty)
+      if(email.isEmpty || password.isEmpty)
       {
         return;
       }
 
-      AuthUser? user = await _authService.registerWithEmailAndPassword(_email.trim(), _password.trim());
+      AuthUser? user = await authService.registerWithEmailAndPassword(email.trim(), password.trim());
       if(user == null)
       {
         Fluttertoast.showToast(
@@ -74,12 +74,12 @@ class _Authorization extends State<Authorization> {
       }
       else
       {
-        _emailController.clear();
-        _passwordController.clear();
+        emailController.clear();
+        passwordController.clear();
       }
     }
 
-    Widget _text(Icon icon, String hint, TextEditingController controller, bool obsecure){
+    Widget text(Icon icon, String hint, TextEditingController controller, bool obsecure){
       return Container(
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: TextField(
@@ -107,44 +107,42 @@ class _Authorization extends State<Authorization> {
       );
     }
     
-    Widget _field(String label, void Function() func){
-      return Container(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20, top: 20),
-              child: _text(const Icon(Icons.login), 'Электронная почта', _emailController, false),
+    Widget field(String label, void Function() func){
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20, top: 20),
+            child: text(const Icon(Icons.login), 'Электронная почта', emailController, false),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 1, top: 20),
+            child: text(const Icon(Icons.lock), 'Пароль', passwordController, true),
+          ),
+          Container(
+            alignment: AlignmentDirectional.topStart,
+            padding: const EdgeInsets.only(bottom: 5, top: 1, left: 28),
+            child: const Text('Минимальная длина пароля 6 символов', style: TextStyle(fontSize: 13))
+          ),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: SizedBox(
+              height: 60,
+              width: MediaQuery.of(context).size.width,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.grey[700], backgroundColor: Colors.grey[300], // foreground
+                ),
+                child: Text(label,
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                onPressed:(){
+                  func();
+                },
+              )
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 1, top: 20),
-              child: _text(const Icon(Icons.lock), 'Пароль', _passwordController, true),
-            ),
-            Container(
-              alignment: AlignmentDirectional.topStart,
-              padding: const EdgeInsets.only(bottom: 5, top: 1, left: 28),
-              child: const Text('Минимальная длина пароля 6 символов', style: TextStyle(fontSize: 13))
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: SizedBox(
-                height: 60,
-                width: MediaQuery.of(context).size.width,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.grey[700], backgroundColor: Colors.grey[300], // foreground
-                  ),
-                  child: Text(label,
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  onPressed:(){
-                    func();
-                  },
-                )
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       );
     }
 
@@ -162,17 +160,17 @@ class _Authorization extends State<Authorization> {
           ),
           const SizedBox(height: 100),
           (
-            ShowLogin
+            showLogin
             ? Column(
               children: [
-                _field('Войти', _loginUser),
+                field('Войти', loginUser),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: GestureDetector(
                     child: const Text('Не зарегистрированы? Зарегистрируйтесь!'),
                     onTap:(){
                       setState((){
-                        ShowLogin = false;
+                        showLogin = false;
                       });
                     }
                   ),
@@ -181,14 +179,14 @@ class _Authorization extends State<Authorization> {
             )
             :Column(
               children: [
-                _field('Зарегистрироваться', _registerUser),
+                field('Зарегистрироваться', registerUser),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: GestureDetector(
                     child: const Text('Уже зарегистрированы? Войдите!'),
                     onTap:(){
                       setState((){
-                        ShowLogin = true;
+                        showLogin = true;
                       });
                     }
                   ),

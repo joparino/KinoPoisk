@@ -31,7 +31,7 @@ class FilmsPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: cheight-20,
               child: FutureBuilder<List<Film>>(
-                future: FilmsApi.getTopPopular(),
+                future: FilmsApi().getTopPopular(),
                 builder: (context, snapshot)
                 {
                   if(!snapshot.hasData)
@@ -65,7 +65,7 @@ class FilmsPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height:  cheight-60,
               child: FutureBuilder<List<Film>>(
-                future: FilmsApi.getTopAwait(),
+                future: FilmsApi().getTopAwait(),
                 builder: (context, snapshot)
                 {
                   if(!snapshot.hasData)
@@ -98,7 +98,7 @@ class FilmsPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: cheight-50,
               child: FutureBuilder<List<Film>>(
-                future: FilmsApi.getTopBest(),
+                future: FilmsApi().getTopBest(),
                 builder: (context, snapshot)
                 {
                   if(!snapshot.hasData)

@@ -9,7 +9,7 @@ class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
 
   @override
-  _SearchPage createState() => _SearchPage();
+  State<SearchPage> createState() => _SearchPage();
 }
 
 class _SearchPage extends State<SearchPage> {
@@ -28,10 +28,8 @@ class _SearchPage extends State<SearchPage> {
               height: 60,
               child: TextField(
                 onSubmitted: (text) {
-                  x = text;
-                  isTexting = false;
                   setState(() {
-                    myFuture = FilmsApi.getSearchFilm(text);
+                    myFuture = FilmsApi().getSearchFilm(text);
                   });
                 },
                 cursorColor: Colors.black,
@@ -49,35 +47,33 @@ class _SearchPage extends State<SearchPage> {
             ),
           ),
           Expanded(
-            child: Container(
-              child: FutureBuilder<FilmSearched>(
-                  future: myFuture,
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const Center(child: CircularProgressIndicator());
-                    }
+            child: FutureBuilder<FilmSearched>(
+                future: myFuture,
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
 
-                    final search = snapshot.data;
+                  final search = snapshot.data;
 
-                    return SizedBox(
-                      child: GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            mainAxisExtent: cheight - 40,
-                            crossAxisCount: 2,
-                          ),
-                          shrinkWrap: true,
-                          itemCount: search == null ? 0 : search.films.length,
-                          itemBuilder: (context, index) {
-                            final film = search!.films[index];
-                            return ListSearched(
-                                film: film,
-                                heigth: cheight - 40,
-                                width: cwidth - 20);
-                          }),
-                    );
-                  }),
-            ),
+                  return SizedBox(
+                    child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          mainAxisExtent: cheight - 40,
+                          crossAxisCount: 2,
+                        ),
+                        shrinkWrap: true,
+                        itemCount: search == null ? 0 : search.films.length,
+                        itemBuilder: (context, index) {
+                          final film = search!.films[index];
+                          return ListSearched(
+                              film: film,
+                              heigth: cheight - 40,
+                              width: cwidth - 20);
+                        }),
+                  );
+                }),
           ),
         ],
       ),

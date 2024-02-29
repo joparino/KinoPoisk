@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class title extends StatelessWidget {
-  const title({Key? key, required this.Title,}) : super(key: key);
+class Title extends StatelessWidget {
+  const Title({Key? key, required this.title,}) : super(key: key);
   
-  final String Title;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class title extends StatelessWidget {
         children: [
           Container(
             margin: const EdgeInsets.only(left: 0, right: 0, top: 30),
-              child: Text(Title,
+              child: Text(title,
               style: TextStyle(color: Colors.blueGrey[600],
               fontSize: 26,
               ),

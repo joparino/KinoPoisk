@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flok/pages/auth/landing.dart';
 import 'package:flok/services/user.dart';
+import 'package:flutter/foundation.dart';
 
 class AuthService {
   
@@ -14,7 +15,9 @@ class AuthService {
       User? user = result.user;
       return AuthUser.fromFirebase(user);
     } on FirebaseException catch (error) {
-      print(error);
+      if (kDebugMode) {
+        print(error);
+      }
       return null;
     }
   }
@@ -27,7 +30,9 @@ class AuthService {
       User? user = result.user;
       return AuthUser.fromFirebase(user);
     } on FirebaseException catch (error) {
-      print(error);
+      if (kDebugMode) {
+        print(error);
+      }
       return null;
     }
   }

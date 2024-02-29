@@ -26,7 +26,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
       ),
       body: SingleChildScrollView(
         child: FutureBuilder<DetailsFilm>(
-            future: FilmsApi.getDetailsFilm(widget.filmId),
+            future: FilmsApi().getDetailsFilm(widget.filmId),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return const Center(child: CircularProgressIndicator());
@@ -49,7 +49,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                     listGenres += details.genres[i].genre;
                     break;
                   }
-                  listGenres += details.genres[i].genre + ", ";
+                  listGenres += "${details.genres[i].genre}, ";
                 }
                 return AutoSizeText('Жанры: $listGenres');
               }
@@ -65,7 +65,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                     listCountries += details.countries[i].country;
                     break;
                   }
-                  listCountries += details.countries[i].country + ", ";
+                  listCountries += "${details.countries[i].country}, ";
                 }
                 return AutoSizeText('Страны: $listCountries');
               }
@@ -107,12 +107,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
                             children: [
                               Container(
                                 margin: const EdgeInsets.only(top: 34, left: 12),
-                                child: Text('Год: ' + details.year.toString()),
+                                child: Text('Год: ${details.year}'),
                               ),
                               Container(
                                 margin: const EdgeInsets.only(top: 20, left: 12),
                                 child: Text(
-                                    'Время: ' + details.filmLength.toString()),
+                                    'Время: ${details.filmLength}'),
                               ),
                               Container(
                                 margin: const EdgeInsets.only(top: 20, left: 12),
