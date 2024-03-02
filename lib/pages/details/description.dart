@@ -25,6 +25,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
         backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: FutureBuilder<DetailsFilm>(
             future: FilmsApi().getDetailsFilm(widget.filmId),
             builder: (context, snapshot) {
@@ -193,7 +194,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                         ],
                       ),
                       Container(
-                        height: 240,
+                        //height: 240,
                         width: MediaQuery.of(context).size.width,
                         padding: const EdgeInsets.only(top: 12, left: 10, right: 10),
                         child: AutoSizeText(

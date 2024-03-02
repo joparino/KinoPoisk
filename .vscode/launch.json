@@ -7,13 +7,21 @@
         {
             "name": "Flok",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "--dart-define-from-file",
+                "api-keys.json"
+              ]
         },
         {
             "name": "Flok (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            "args": [
+                "--dart-define-from-file",
+                "api-keys.json"
+              ]
         }
     ]
 }

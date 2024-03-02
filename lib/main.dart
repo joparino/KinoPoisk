@@ -8,11 +8,13 @@ import 'package:flok/services/user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -23,12 +25,12 @@ class MyApp extends StatelessWidget {
       value: AuthService().currentUser,
       initialData: null,
       child: MaterialApp(
-        title: 'Sample App',
         theme: ThemeData(
           primaryColor: Colors.white,
           brightness: Brightness.light,
+          useMaterial3: true
         ),
-        home: const Landind(),
+        home: const Landing(),
       ),
     );
   }
@@ -41,6 +43,7 @@ class MainWindow extends StatefulWidget{
   @override
   State<MainWindow> createState() => _MainWindow();
 }
+
 
 class _MainWindow extends State<MainWindow> {
   int currentPageIndex = 0;

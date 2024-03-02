@@ -39,7 +39,7 @@ class AuthService {
   
   Future logOut() async {
     await _firebaseAuth.signOut();
-    return const Landind();
+    return const Landing();
   }
 
   Stream<AuthUser?> get currentUser {
