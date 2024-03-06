@@ -1,16 +1,11 @@
-# flok
+# KinoPoisk
 
-A new Flutter project.
+Приложение для отслеживания просмотренных, любимых и желаемых фильмов и сериалов
 
-## Getting Started
+## План работы
 
-This project is a starting point for a Flutter application.
+То что нужно сделать/передалать в приложении:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Переработать дизайн приложения
+- Переписать страницу с поиском фильмов
+- [Перейти на declarative plugins block](https://docs.flutter.dev/release/breaking-changes/flutter-gradle-plugin-apply)

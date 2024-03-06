@@ -1,9 +1,10 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flok/components/grid_view.dart';
-import 'package:flok/services/user.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flok/components/grid_plates_films.dart';
+import 'package:flok/components/empy_films_data.dart';
+import 'package:flok/services/user.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key});
@@ -29,6 +30,7 @@ class _UserPage extends State<UserPage> {
         .collection(uid.toString())
         .where('isLiked', isEqualTo: true)
         .snapshots();
+
     return DefaultTabController(
       length: 3,
       child: Column(
@@ -48,46 +50,17 @@ class _UserPage extends State<UserPage> {
                 child: Column(
                   children: [
                     StreamBuilder<QuerySnapshot>(
-                        stream: isWatched,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<QuerySnapshot> snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const Text('Loading');
-                          }
-                          if (snapshot.data!.docs.isEmpty == true) {
-                            return Container(
-                                padding: const EdgeInsets.only(top: 250),
-                                width: 200,
-                                child: const AutoSizeText(
-                                  "Упс! Кажется тут ничего нет \n\t добавьте фильм в список!",
-                                  style: TextStyle(fontSize: 14),
-                                  overflow: TextOverflow.ellipsis,
-                                ));
-                          }
+                    stream: isWatched,
+                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Text('Loading');
+                      }
+                      if (snapshot.data!.docs.isEmpty == true) {
+                        return const EmptyFilmsData();
+                      }
 
-                          return Expanded(
-                            child: SizedBox(
-                              height: 200.0,
-                              child: GridView(
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  mainAxisExtent: 250,
-                                  mainAxisSpacing: 10,
-                                  crossAxisCount: 2,
-                                ),
-                                children: snapshot.data!.docs
-                                    .map<Widget>((DocumentSnapshot document) {
-                                  Map<String, dynamic> data =
-                                      document.data() as Map<String, dynamic>;
-                                  return GridWidget(
-                                      image: data['posterUrlPreview'],
-                                      film: data['kinopoiskId']);
-                                }).toList(),
-                              ),
-                            ),
-                          );
-                        }),
+                      return GridPlatesFilms(listFilms: snapshot.data!.docs);
+                    }),
                   ],
                 ),
               ),
@@ -96,46 +69,18 @@ class _UserPage extends State<UserPage> {
                 child: Column(
                   children: [
                     StreamBuilder<QuerySnapshot>(
-                        stream: isWanted,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<QuerySnapshot> snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const Text('Loading');
-                          }
-                          if (snapshot.data!.docs.isEmpty == true) {
-                            return Container(
-                                padding: const EdgeInsets.only(top: 250),
-                                width: 200,
-                                child: const AutoSizeText(
-                                  "Упс! Кажется тут ничего нет \n\t добавьте фильм в список!",
-                                  style: TextStyle(fontSize: 14),
-                                  overflow: TextOverflow.ellipsis,
-                                ));
-                          }
+                    stream: isWanted,
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Text('Loading');
+                      }
+                      if (snapshot.data!.docs.isEmpty == true) {
+                        return const EmptyFilmsData();
+                      }
 
-                          return Expanded(
-                            child: SizedBox(
-                              height: 200.0,
-                              child: GridView(
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  mainAxisExtent: 250,
-                                  mainAxisSpacing: 10,
-                                  crossAxisCount: 2,
-                                ),
-                                children: snapshot.data!.docs
-                                    .map<Widget>((DocumentSnapshot document) {
-                                  Map<String, dynamic> data =
-                                      document.data() as Map<String, dynamic>;
-                                  return GridWidget(
-                                      image: data['posterUrlPreview'],
-                                      film: data['kinopoiskId']);
-                                }).toList(),
-                              ),
-                            ),
-                          );
-                        }),
+                      return GridPlatesFilms(listFilms: snapshot.data!.docs);
+                    }),
                   ],
                 ),
               ),
@@ -144,46 +89,17 @@ class _UserPage extends State<UserPage> {
                 child: Column(
                   children: [
                     StreamBuilder<QuerySnapshot>(
-                        stream: isLiked,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<QuerySnapshot> snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const Text('Loading');
-                          }
-                          if (snapshot.data!.docs.isEmpty == true) {
-                            return Container(
-                                padding: const EdgeInsets.only(top: 250),
-                                width: 200,
-                                child: const AutoSizeText(
-                                  "Упс! Кажется тут ничего нет \n\t добавьте фильм в список!",
-                                  style: TextStyle(fontSize: 14),
-                                  overflow: TextOverflow.ellipsis,
-                                ));
-                          }
+                    stream: isLiked,
+                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Text('Loading');
+                      }
+                      if (snapshot.data!.docs.isEmpty == true) {
+                        return const EmptyFilmsData();
+                      }
 
-                          return Expanded(
-                            child: SizedBox(
-                              height: 200.0,
-                              child: GridView(
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  mainAxisExtent: 250,
-                                  mainAxisSpacing: 10,
-                                  crossAxisCount: 2,
-                                ),
-                                children: snapshot.data!.docs
-                                    .map<Widget>((DocumentSnapshot document) {
-                                  Map<String, dynamic> data =
-                                      document.data() as Map<String, dynamic>;
-                                  return GridWidget(
-                                      image: data['posterUrlPreview'],
-                                      film: data['kinopoiskId']);
-                                }).toList(),
-                              ),
-                            ),
-                          );
-                        }),
+                      return GridPlatesFilms(listFilms: snapshot.data!.docs);
+                    }),
                   ],
                 ),
               ),
