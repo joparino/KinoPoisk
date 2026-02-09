@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flok/model/details_film.dart';
-import 'package:flok/model/searched_film.dart';
-import 'package:flok/model/top_film.dart';
+import 'package:flok/model/film.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -48,8 +47,7 @@ class FilmsApi{
     final response = await http.get(url, headers: headers);
     String responseText = utf8.decode(response.bodyBytes);
     dynamic responseJson = json.decode(responseText);
-    DetailsFilm detailsFilm = DetailsFilm.fromJson(responseJson);
-    return detailsFilm;
+    return DetailsFilm.fromJson(responseJson);
   }
 
   Future<FilmSearched> getSearchFilm(name) async {
@@ -59,7 +57,6 @@ class FilmsApi{
     final response = await http.get(url, headers: headers);
     String responseText = utf8.decode(response.bodyBytes);
     dynamic responseJson = json.decode(responseText);
-    FilmSearched searchedFilm = FilmSearched.fromJson(responseJson);
-    return searchedFilm;
+    return FilmSearched.fromJson(responseJson);
   }
 }

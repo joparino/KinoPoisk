@@ -1,4 +1,4 @@
-import 'package:flok/model/searched_film.dart';
+import 'package:flok/model/film.dart';
 import 'package:flok/pages/details/description.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +8,7 @@ class ListSearched extends StatelessWidget {
     required this.film, required this.heigth, required this.width,
   });
 
-  final FilmS film;
+  final Film film;
   final double heigth;
   final double width;
 

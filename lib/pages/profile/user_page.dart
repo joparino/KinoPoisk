@@ -17,7 +17,7 @@ class _UserPage extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
-    final uid = AuthUser.fromFirebase(user).id;
+    String? uid = AuthUser.fromFirebase(user).id;
     final Stream<QuerySnapshot> isWatched = FirebaseFirestore.instance
         .collection(uid.toString())
         .where('isWatched', isEqualTo: true)
@@ -45,66 +45,34 @@ class _UserPage extends State<UserPage> {
           ),
           Expanded(
             child: TabBarView(children: [
-              Container(
-                margin: const EdgeInsets.only(top: 10, right: 8, left: 8),
-                child: Column(
-                  children: [
-                    StreamBuilder<QuerySnapshot>(
-                    stream: isWatched,
-                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Text('Loading');
-                      }
-                      if (snapshot.data!.docs.isEmpty == true) {
-                        return const EmptyFilmsData();
-                      }
-
-                      return GridPlatesFilms(listFilms: snapshot.data!.docs);
-                    }),
-                  ],
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 10, right: 8, left: 8),
-                child: Column(
-                  children: [
-                    StreamBuilder<QuerySnapshot>(
-                    stream: isWanted,
-                    builder: (BuildContext context,
-                        AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Text('Loading');
-                      }
-                      if (snapshot.data!.docs.isEmpty == true) {
-                        return const EmptyFilmsData();
-                      }
-
-                      return GridPlatesFilms(listFilms: snapshot.data!.docs);
-                    }),
-                  ],
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 10, right: 8, left: 8),
-                child: Column(
-                  children: [
-                    StreamBuilder<QuerySnapshot>(
-                    stream: isLiked,
-                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Text('Loading');
-                      }
-                      if (snapshot.data!.docs.isEmpty == true) {
-                        return const EmptyFilmsData();
-                      }
-
-                      return GridPlatesFilms(listFilms: snapshot.data!.docs);
-                    }),
-                  ],
-                ),
-              ),
+              _buildTabListFilms(isWatched),
+              _buildTabListFilms(isWanted),
+              _buildTabListFilms(isLiked)
             ]),
           ),
+        ],
+      ),
+    );
+  }
+
+  Container _buildTabListFilms(Stream<QuerySnapshot<Object?>> listFilsm) {
+    return Container(
+      margin: const EdgeInsets.only(top: 10, right: 5, left: 15),
+      child: Column(
+        children: [
+          StreamBuilder<QuerySnapshot>(
+          stream: listFilsm,
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Text('Loading');
+            }
+            
+            if (snapshot.data!.docs.isEmpty == true) {
+              return const EmptyFilmsData();
+            }
+
+            return GridPlatesFilms(listFilms: snapshot.data!.docs);
+          }),
         ],
       ),
     );

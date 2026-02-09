@@ -1,6 +1,6 @@
 import 'package:flok/components/constants.dart';
 import 'package:flok/components/plate_film.dart';
-import 'package:flok/model/top_film.dart';
+import 'package:flok/model/film.dart';
 import 'package:flok/request/request.dart';
 import 'package:flutter/material.dart';
 

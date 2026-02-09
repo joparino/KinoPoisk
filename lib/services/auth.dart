@@ -7,14 +7,12 @@ class AuthService {
   
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  Future<AuthUser?> signInWithEmailAndPassword(
-      String email, String password) async {
+  Future<AuthUser?> signInWithEmailAndPassword(String email, String password) async {
     try {
-      UserCredential result = await _firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
-      User? user = result.user;
-      return AuthUser.fromFirebase(user);
-    } on FirebaseException catch (error) {
+      UserCredential result = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      return AuthUser.fromFirebase(result.user);
+    } 
+    on FirebaseException catch (error) {
       if (kDebugMode) {
         print(error);
       }
@@ -22,14 +20,12 @@ class AuthService {
     }
   }
 
-  Future<AuthUser?> registerWithEmailAndPassword(
-      String email, String password) async {
+  Future<AuthUser?> registerWithEmailAndPassword(String email, String password) async {
     try {
-      UserCredential result = await _firebaseAuth
-          .createUserWithEmailAndPassword(email: email, password: password);
-      User? user = result.user;
-      return AuthUser.fromFirebase(user);
-    } on FirebaseException catch (error) {
+      UserCredential result = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      return AuthUser.fromFirebase(result.user);
+    } 
+    on FirebaseException catch (error) {
       if (kDebugMode) {
         print(error);
       }
@@ -43,8 +39,6 @@ class AuthService {
   }
 
   Stream<AuthUser?> get currentUser {
-    return _firebaseAuth
-        .authStateChanges()
-        .map((User? user) => user != null ? AuthUser.fromFirebase(user) : null);
+    return _firebaseAuth.authStateChanges().map((User? user) => user != null ? AuthUser.fromFirebase(user) : null);
   }
 }

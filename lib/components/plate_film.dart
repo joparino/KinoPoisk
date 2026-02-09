@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flok/model/top_film.dart';
+import 'package:flok/model/film.dart';
 import 'package:flok/pages/details/description.dart';
 
 class PlateFilm extends StatelessWidget {
