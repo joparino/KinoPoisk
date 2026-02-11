@@ -46,3 +46,4 @@ app.*.map.json
 /android/app/release
 
 api-keys.json
+android/app/google-services.json

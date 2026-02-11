@@ -19,7 +19,7 @@ class ListSearched extends StatelessWidget {
         GestureDetector(
           onTap: () {
           Navigator.push(context, MaterialPageRoute(
-              builder: (context)=>  DescriptionPage(film.filmId),
+              builder: (context)=>  DescriptionPage(film.externalId),
             ));
           },
           child: Container(
@@ -27,7 +27,7 @@ class ListSearched extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16.0),
               child: Image.network(
-                film.posterUrlPreview,
+                film.posterUrl!,
                 width: width,
                 height: heigth,
                 fit: BoxFit.fill,

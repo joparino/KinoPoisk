@@ -145,7 +145,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                 foregroundColor: Colors.grey[700], backgroundColor: Colors.grey[300], // foreground
                               ),
                               onPressed: () {
-                                DatabaseService().addFilmIsWatched(details);
+                                DatabaseService().addFilmToWatchedList(details);
                               },
                               child: const Icon(Icons.check_circle_rounded),
                             ),
@@ -159,7 +159,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                 foregroundColor: Colors.grey[700], backgroundColor: Colors.grey[300], // foreground
                               ),
                               onPressed: () {
-                                DatabaseService().addFilmIsWanted(details);
+                                DatabaseService().addFilmToWantedList(details);
                               },
                               child: const Icon(Icons.turned_in),
                             ),
@@ -173,7 +173,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                 foregroundColor: Colors.grey[700], backgroundColor: Colors.grey[300], // foreground
                               ),
                               onPressed: () {
-                                DatabaseService().addFilmIsLiked(details);
+                                DatabaseService().addFilmToLikedList(details);
                               },
                               child: const Icon(Icons.favorite_rounded),
                             ),
@@ -187,7 +187,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                   foregroundColor: Colors.grey[700], backgroundColor: Colors.grey[300], // foreground
                                 ),
                                 onPressed: () {
-                                  DatabaseService().deleteFilm(details);
+                                  DatabaseService().deleteFilmFromList(details);
                                 },
                                 child: const Icon(Icons.delete_rounded),
                               )),

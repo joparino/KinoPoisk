@@ -24,11 +24,21 @@ class _Authorization extends State<Authorization> {
   Widget build(BuildContext context) {
 
     void loginUser() async{
+      print('loginUser tapped');
       email = emailController.text;
       password = passwordController.text;
 
       if(email.isEmpty || password.isEmpty)
       {
+        print('loginUser: empty email or password');
+        Fluttertoast.showToast(
+          msg: "Введите email и пароль",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+        );
         return;
       }
 
@@ -48,15 +58,33 @@ class _Authorization extends State<Authorization> {
       {
         emailController.clear();
         passwordController.clear();
+        Fluttertoast.showToast(
+          msg: "Вход выполнен",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.0
+        );
       }
     }
     
     void registerUser() async{
+      print('registerUser tapped');
       email = emailController.text;
       password = passwordController.text;
 
       if(email.isEmpty || password.isEmpty)
       {
+        print('registerUser: empty email or password');
+        Fluttertoast.showToast(
+          msg: "Введите email и пароль",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+        );
         return;
       }
 
@@ -76,6 +104,25 @@ class _Authorization extends State<Authorization> {
       {
         emailController.clear();
         passwordController.clear();
+        if (authService.supabase.auth.currentSession == null) {
+          Fluttertoast.showToast(
+            msg: "Аккаунт создан. Подтвердите email и войдите снова",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.CENTER,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0
+          );
+        } else {
+          Fluttertoast.showToast(
+            msg: "Регистрация успешна",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0
+          );
+        }
       }
     }
 
@@ -136,9 +183,7 @@ class _Authorization extends State<Authorization> {
                 child: Text(label,
                 style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                onPressed:(){
-                  func();
-                },
+                onPressed: func,
               )
             ),
           )

@@ -1,4 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flok/pages/auth/landing.dart';
 import 'package:flok/pages/films.dart';
 import 'package:flok/pages/profile/user_page.dart';
@@ -7,11 +6,14 @@ import 'package:flok/services/auth.dart';
 import 'package:flok/services/user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide AuthUser;
 
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  final String supabaseUrl = const String.fromEnvironment('SUPABASE_URL');
+  final String supabaseKey = const String.fromEnvironment('SUPABASE_KEY');
+  await Supabase.initialize(url: supabaseUrl, anonKey: supabaseKey);
   runApp(const MyApp());
 }
 

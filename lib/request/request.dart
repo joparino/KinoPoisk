@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 import 'package:flok/model/details_film.dart';
 import 'package:flok/model/film.dart';
@@ -7,56 +6,86 @@ import 'package:http/http.dart' as http;
 
 class FilmsApi{
 
-  final String kinopoiskApiKey = const String.fromEnvironment('KINOPOISK_KEY');
+  final String tmdbApiKey = const String.fromEnvironment('TMDB_API_KEY');
   Map<String, String> headers = {'content-type': 'application/json'};
 
-  Future<List<Film>> getTopPopular() async {
-    Uri url = Uri.parse('https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1');
-    headers.addAll({"X-API-KEY": kinopoiskApiKey});
+  Future<Map<String, dynamic>> baseRequestToTmdb(
+    String unencodedPath, {
+    Map<String, String>? queryParameters,
+  }) async {
+    if (tmdbApiKey.isEmpty) {
+      throw StateError('TMDB_API_KEY is missing. Pass it via --dart-define=TMDB_API_KEY=...');
+    }
+
+    final Map<String, String> params = {
+      'api_key': tmdbApiKey,
+      'language': 'ru-RU',
+      ...?queryParameters,
+    };
+
+    final Uri url = Uri.https(
+      'api.themoviedb.org',
+      unencodedPath,
+      params,
+    );
 
     final response = await http.get(url, headers: headers);
-    String responseText = utf8.decode(response.bodyBytes);
-    dynamic responseJson = json.decode(responseText);
-    return List<Film>.from(responseJson["films"].map((e) => Film.fromJson(e)).toList());
+    if (response.statusCode != 200) {
+      throw Exception('TMDB request failed: ${response.statusCode} ${response.body}');
+    }
+
+    final dynamic responseJson = json.decode(utf8.decode(response.bodyBytes));
+    return responseJson as Map<String, dynamic>;
+  }
+
+  Future<List<Film>> baseGetFilmList(
+    String unencodedPath, {
+    Map<String, String>? queryParameters,
+  }) async {
+    final Map<String, dynamic> responseJson = await baseRequestToTmdb(
+      unencodedPath,
+      queryParameters: {'page': '1', ...?queryParameters},
+    );
+    final List<dynamic> results = (responseJson['results'] ?? const []) as List<dynamic>;
+    return List<Film>.from(results.map((dynamic e) => Film.fromJson(e as Map<String, dynamic>)));
+  }
+
+  Future<List<Film>> getTopPopular() async {
+    return await baseGetFilmList('/3/movie/popular');
   }
 
   Future<List<Film>> getTopAwait() async {
-    Uri url = Uri.parse('https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=1');
-    headers.addAll({"X-API-KEY": kinopoiskApiKey});
-
-    final response = await http.get(url, headers: headers);
-    String responseText = utf8.decode(response.bodyBytes);
-    dynamic responseJson = json.decode(responseText);
-    return List<Film>.from(responseJson["films"].map((e) => Film.fromJson(e)).toList());
+    return await baseGetFilmList('/3/movie/upcoming');
   }
 
   Future<List<Film>> getTopBest() async {
-    Uri url = Uri.parse('https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1');
-    headers.addAll({"X-API-KEY": kinopoiskApiKey});
-
-    final response = await http.get(url, headers: headers);
-    String responseText = utf8.decode(response.bodyBytes);
-    dynamic responseJson = json.decode(responseText);
-    return List<Film>.from(responseJson["films"].map((e) => Film.fromJson(e)).toList());
+    return await baseGetFilmList('/3/movie/top_rated');
   }
 
-  Future<DetailsFilm> getDetailsFilm(filmId) async {
-    Uri url = Uri.parse('https://kinopoiskapiunofficial.tech/api/v2.2/films/$filmId');
-    headers.addAll({"X-API-KEY": kinopoiskApiKey});
-
-    final response = await http.get(url, headers: headers);
-    String responseText = utf8.decode(response.bodyBytes);
-    dynamic responseJson = json.decode(responseText);
+  Future<DetailsFilm> getDetailsFilm(int filmId) async {
+    final Map<String, dynamic> responseJson = await baseRequestToTmdb('/3/movie/$filmId');
     return DetailsFilm.fromJson(responseJson);
   }
 
-  Future<FilmSearched> getSearchFilm(name) async {
-    Uri url = Uri.parse('https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=$name');
-    headers.addAll({"X-API-KEY": kinopoiskApiKey});
+  Future<FilmSearched> getSearchFilm(String name) async {
+    final String query = name.trim();
+    if (query.isEmpty) {
+      return FilmSearched(keyword: '', films: const []);
+    }
 
-    final response = await http.get(url, headers: headers);
-    String responseText = utf8.decode(response.bodyBytes);
-    dynamic responseJson = json.decode(responseText);
-    return FilmSearched.fromJson(responseJson);
+    final Map<String, dynamic> responseJson = await baseRequestToTmdb(
+      '/3/search/multi',
+      queryParameters: {
+        'query': query,
+        'page': '1',
+        'include_adult': 'false',
+      },
+    );
+    final List<dynamic> results = (responseJson['results'] ?? const []) as List<dynamic>;
+    final List<Film> films = List<Film>.from(
+      results.map((dynamic e) => Film.fromJson(e as Map<String, dynamic>)),
+    );
+
+    return FilmSearched(keyword: query, films: films);
   }
 }

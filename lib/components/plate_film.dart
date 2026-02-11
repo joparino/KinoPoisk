@@ -22,7 +22,7 @@ class PlateFilm extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16.0),
         child: Image.network(
-          film.posterUrlPreview,
+          film.posterUrl!,
           width: width,
           height: heigth,
           fit: BoxFit.fill,
@@ -52,7 +52,7 @@ class PlateFilmRow extends StatelessWidget {
         GestureDetector(
           onTap: () {
           Navigator.push(context, MaterialPageRoute(
-              builder: (context) => DescriptionPage(film.filmId),
+              builder: (context) => DescriptionPage(film.externalId),
             )
           );
           },
@@ -72,7 +72,7 @@ class PlateFilmColumn extends StatelessWidget {
     required this.width,
   });
   PlateFilmColumn.withIdAndUrl({key, required String url, required int id, required double height, required double width})
-   : this(key: key, film: Film(filmId: id, posterUrlPreview: url), heigth: height, width: width);
+   : this(key: key, film: Film(externalId: id, posterUrl: url, source: '', title: '', year: null, createdAt: -1), heigth: height, width: width);
 
   final Film film;
   final double heigth;
@@ -85,7 +85,7 @@ class PlateFilmColumn extends StatelessWidget {
         GestureDetector(
           onTap: () {
           Navigator.push(context, MaterialPageRoute(
-              builder: (context) => DescriptionPage(film.filmId),
+              builder: (context) => DescriptionPage(film.externalId),
             )
           );
           },

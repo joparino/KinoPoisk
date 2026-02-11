@@ -1,9 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' show User;
 
 class AuthUser{
   String? id;
   
-  AuthUser.fromFirebase(User? user){
-    id = user!.uid;
+  AuthUser.fromSupabase(User user){
+    id = user.id;
   }
 }
