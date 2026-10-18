@@ -1,49 +1,45 @@
-# Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
-.DS_Store
-.atom/
-.buildlog/
-.history
-.svn/
-
-# IntelliJ related
+# IDE and local configuration
+.idea/
 *.iml
 *.ipr
 *.iws
-.idea/
+local.properties
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# Gradle, Kotlin and generated build output
+.kotlin/
+.gradle/
+**/build/
+!src/**/build/
+captures/
+.externalNativeBuild/
+.cxx/
 
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.packages
-.pub-cache/
-.pub/
-/build/
+# Local signing and service configuration
+keystore.properties
+*.jks
+*.keystore
+google-services.json
+GoogleService-Info.plist
 
-# Web related
-lib/generated_plugin_registrant.dart
+# Local logs and JVM diagnostics
+*.log
+hs_err_pid*
+replay_pid*
+*.hprof
 
-# Symbolication related
-app.*.symbols
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
 
-# Obfuscation related
-app.*.map.json
+# Xcode user state (for future iOS support)
+xcuserdata/
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
 
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
-
-api-keys.json
-android/app/google-services.json
+# JavaScript dependencies (for future web support)
+node_modules/
